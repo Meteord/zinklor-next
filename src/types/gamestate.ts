@@ -1,15 +1,10 @@
 
 import Info from "./Info";
+import Staatsform from "./staatsform";
 import Building from "./building";
 import { Einheit } from "./einheit";
 import Kosten from "./kosten";
 
-
-export enum Staatsform {
-    Monarchie = 'Monarchie',
-    Demokratie = 'Demokratie',
-    Diktatur = 'Diktatur'
-}
 
 export class GameState {
     kosten: Kosten;
