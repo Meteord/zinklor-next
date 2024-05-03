@@ -38,6 +38,8 @@ const InfoComponent: React.FC<InfoComponentProps> = ({
         value={info.beschreibung}
         onChange={handleDescriptionChange}
         fullWidth
+        multiline
+        minRows={6}
       />
     </div>
   );

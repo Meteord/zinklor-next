@@ -1,9 +1,25 @@
 import React from "react";
 import BuildingComponent from "../components/building.component";
-import { Box, Card, CardContent, Tab, Tabs, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent, Tab, Tabs, Typography } from "@mui/material";
+import Building from "../types/building";
+import { BuildingType } from "../types/buildingtype";
+import { Erweiterung } from "../types/erweiterung";
+import Kosten from "../types/kosten";
+import Bringt from "../types/bringt";
+import Info from "../types/Info";
 
 const AdminPage: React.FC = () => {
   const [value, setValue] = React.useState("unit");
+  const [building, setBuilding] = React.useState<Building>(
+    new Building(
+      new Kosten(0, 0, 0, 0),
+      BuildingType.Burg,
+      Erweiterung.Eis,
+      new Bringt("", new Kosten(0, 0, 0, 0)),
+      0,
+      new Info("", "")
+    )
+  );
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -36,11 +52,17 @@ const AdminPage: React.FC = () => {
             <Tab value="else" label="Sonstiges" />
           </Tabs>
           {value === "building" ? (
-            <BuildingComponent></BuildingComponent>
+            <div>
+              <BuildingComponent
+                building={building}
+                setBuilding={setBuilding}
+              ></BuildingComponent>
+              <Button>Zur Vorschau</Button>
+            </div>
           ) : (
             <div></div>
           )}
-        </CardContent>  
+        </CardContent>
       </Card>
     </Box>
   );
