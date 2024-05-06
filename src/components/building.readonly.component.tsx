@@ -1,8 +1,16 @@
 import React from "react";
-import { Typography, Divider, Box, ImageListItem, Chip } from "@mui/material";
+import {
+  Typography,
+  Divider,
+  Box,
+  ImageListItem,
+  Chip,
+  Grid,
+} from "@mui/material";
 import Building from "../types/building";
 import InfoReadOnlyComponent from "./info.readonly.component";
 import KostenReadOnlyComponent from "./costen.readonly.component";
+import KostenListeReadOnlyComponent from "./costenliste.readonly.component";
 const building_jpg = require("../data/building/building.jpg");
 
 export interface BuildingReadonlyComponentProps {
@@ -42,9 +50,28 @@ const BuildingReadonlyComponent: React.FC<BuildingReadonlyComponentProps> = ({
               <Chip variant="outlined" label={option} key={index} />
             ))}
           </div>
-          <div>Kraft: {building.kraft}</div>
-          <div>Abkürzung: {building.abkürzung}</div>
-          <div>Erweiterung: {building.erweiterung}</div>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <Typography variant="h6">Kraft: {building.kraft}</Typography>
+            </Grid>
+            {building.abkürzung && (
+              <Grid item xs={12}>
+                <Typography variant="h6">
+                  Abkürzung: {building.abkürzung}
+                </Typography>
+              </Grid>
+            )}
+            <Grid item xs={12}>
+              <Typography variant="h6">
+                Erweiterung: {building.erweiterung}
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="h6">
+                Effekt: {building.bringt.beschreibung}
+              </Typography>
+            </Grid>
+          </Grid>
         </Box>
         <ImageListItem>
           <img
@@ -57,33 +84,15 @@ const BuildingReadonlyComponent: React.FC<BuildingReadonlyComponentProps> = ({
       </Box>
 
       <Divider></Divider>
-      <Typography variant="h6" component="h1" gutterBottom>
-        Baukosten
-      </Typography>
-      <KostenReadOnlyComponent
-        kosten={building.kosten}
-      ></KostenReadOnlyComponent>
-      <Divider></Divider>
-
-      <Typography variant="h6" component="h1" gutterBottom>
-        Braucht
-      </Typography>
-      <KostenReadOnlyComponent
-        kosten={building.braucht}
-      ></KostenReadOnlyComponent>
-      <Typography variant="h6" component="h1" gutterBottom>
-        Bringt
-      </Typography>
-      <KostenReadOnlyComponent
-        kosten={building.bringt.ertrag}
-      ></KostenReadOnlyComponent>
-            <Typography variant="h6" component="h1" gutterBottom>
-        Differenz: Bringt- Braucht:
-      </Typography>
-      <KostenReadOnlyComponent
-        kosten={diffKosten}
-      ></KostenReadOnlyComponent>
-      <div>Effekt: {building.bringt.beschreibung}</div>
+      <KostenListeReadOnlyComponent
+        labels={["Baukosten", "Braucht", "Bringt", "Differenz"]}
+        kostenListe={[
+          building.kosten,
+          building.braucht,
+          building.bringt.ertrag,
+          diffKosten,
+        ]}
+      ></KostenListeReadOnlyComponent>
     </Box>
   );
 };

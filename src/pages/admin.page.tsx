@@ -15,6 +15,7 @@ import Kosten from "../types/kosten";
 import Bringt from "../types/bringt";
 import Info from "../types/Info";
 import BuildingReadonlyComponent from "../components/building.readonly.component";
+import { instanceToPlain, serialize } from "class-transformer";
 
 const AdminPage: React.FC = () => {
   const [value, setValue] = React.useState("unit");
@@ -27,13 +28,27 @@ const AdminPage: React.FC = () => {
       0,
       new Info("", ""),
       [],
-      new Kosten(0,0,0,0),
+      new Kosten(0, 0, 0, 0),
       ""
     )
   );
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
+  };
+
+  const exportData = () => {
+    let exported = JSON.stringify(instanceToPlain(building));
+    const blob = new Blob([exported], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = building.info.name + ".json";
+    link.click();
+
+    // Freigabe der Blob-URL
+    URL.revokeObjectURL(url);
   };
   return (
     <Box
@@ -47,9 +62,6 @@ const AdminPage: React.FC = () => {
     >
       <Card>
         <CardContent>
-          <Typography variant="h5" component="h1" gutterBottom>
-            Einheit, Gebäude oder Sonstiges hinzufügen
-          </Typography>
           <Tabs
             value={value}
             onChange={handleChange}
@@ -57,8 +69,15 @@ const AdminPage: React.FC = () => {
             indicatorColor="secondary"
             aria-label="secondary tabs example"
             centered
+            sx={{
+              backgroundColor: "darkgreen",
+              color: "#aaa",
+              "& .Mui-selected": {
+                color: "#fff",
+              },
+            }}
           >
-            <Tab value="unit" label="Einheit"></Tab>
+            <Tab value="unit" label="Einheit" />
             <Tab value="building" label="Gebäude" />
             <Tab value="else" label="Sonstiges" />
           </Tabs>
@@ -79,8 +98,19 @@ const AdminPage: React.FC = () => {
                   isPreview(!preview);
                 }}
               >
-                {preview ?  <div>Zurück</div> : <div>Zur Vorschau</div> }
+                {preview ? <div>Zurück</div> : <div>Zur Vorschau</div>}
               </Button>
+              {preview ? (
+                <Button
+                  onClick={() => {
+                    exportData();
+                  }}
+                >
+                  Export
+                </Button>
+              ) : (
+                <div></div>
+              )}
             </div>
           ) : (
             <div></div>

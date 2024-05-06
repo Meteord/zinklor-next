@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextField, Button } from "@mui/material";
+import { TextField } from "@mui/material";
 import Kosten from "../types/kosten";
 
 export interface KostenComponentProps {

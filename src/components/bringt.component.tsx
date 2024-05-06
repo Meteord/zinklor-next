@@ -14,14 +14,14 @@ const BringtComponent : React.FC<BringtComponentProps>= ({ bringt, setBringt }: 
   const [ertrag, setErtrag] = useState<Kosten>(bringt.ertrag);
 
   const handleSubmit = () => {
-    let br = new Bringt(beschreibung, bringt.ertrag);
+    let br = new Bringt(beschreibung, ertrag);
     console.log("Submit: Bringt" + JSON.stringify(br));
     setBringt(br);
   };
 
   return (
     <div>
-      <KostenComponent kosten={ertrag} setKosten={setErtrag} />
+      <KostenComponent kosten={ertrag} setKosten={(kosten) => {setErtrag(kosten); handleSubmit()}} />
       <TextField
         label="Bringt folgende Dinge:"
         value={beschreibung}
