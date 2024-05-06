@@ -1,10 +1,10 @@
 
 import Info from "./Info";
-import Staatsform from "./staatsform";
 import Building from "./building";
 import { Einheit } from "./einheit";
 import Kosten from "./kosten";
 import Spell from "./spell";
+import Staatsform from "./staatsform";
 
 
 export class GameState {

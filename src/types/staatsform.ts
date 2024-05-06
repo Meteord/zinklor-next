@@ -1,5 +1,6 @@
+import Info from "./Info";
 
-enum Staatsform {
+export enum Staatsformtype {
     Monarchie = 'Monarchie',
     Demokratie = 'Demokratie',
     Schreckensherrschaft = 'Schreckensherrschaft',
@@ -10,4 +11,12 @@ enum Staatsform {
     Merkantilismus = "Merkantilismus"
 }
 
+class Staatsform{
+    type: Staatsformtype;
+    effects: Info[];
+    constructor(type: Staatsformtype, effects: Info[]){
+        this.type = type;
+        this.effects = effects;
+    }
+}
 export default Staatsform;

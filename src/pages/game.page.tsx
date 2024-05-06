@@ -9,6 +9,7 @@ import {
   Divider,
   CardContent,
   Card,
+  ImageListItem,
 } from "@mui/material";
 import { GameState } from "../types/gamestate";
 import Kosten from "../types/kosten";
@@ -16,6 +17,8 @@ import Info from "../types/Info";
 import InfoComponent from "../components/info.component";
 import StaatsformComponent from "../components/staatsform.component";
 import SpellComponent from "../components/spell.component";
+import Staatsform, { Staatsformtype } from "../types/staatsform";
+const koenigjpg = require("../data/unit/könig.jpg");
 
 enum GamePageState {
   UNSTARTED = "UNSTARTED",
@@ -29,7 +32,15 @@ const GamePage: React.FC = () => {
   );
   const [activeStep, setActiveStep] = useState(0);
   const [state, setState] = useState<GameState>(
-    new GameState(new Kosten(0, 500, 0, 0), 0, new Info("", ""), null, [], null, null)
+    new GameState(
+      new Kosten(0, 500, 0, 0),
+      0,
+      new Info("", ""),
+      new Staatsform(Staatsformtype.Demokratie, []),
+      [],
+      null,
+      null
+    )
   );
   const steps = ["Wer bist du, Alter?", "Ganz normale Spieleinstellungen"];
 
@@ -104,6 +115,14 @@ const GamePage: React.FC = () => {
                       <Typography variant="h6" component="h2" gutterBottom>
                         König
                       </Typography>
+                      <ImageListItem>
+                        <img
+                          srcSet={`${koenigjpg}?w=250&h=250&fit=crop&auto=format&dpr=2 2x`}
+                          src={`${koenigjpg}?w=250&h=250&fit=crop&auto=format`}
+                          alt={"König"}
+                          loading="lazy"
+                        />
+                      </ImageListItem>
                       <Divider></Divider>
                       <Typography variant="h6" component="h2" gutterBottom>
                         Staatsform
