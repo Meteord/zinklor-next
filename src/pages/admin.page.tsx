@@ -17,7 +17,8 @@ const AdminPage: React.FC = () => {
       Erweiterung.Eis,
       new Bringt("", new Kosten(0, 0, 0, 0)),
       0,
-      new Info("", "")
+      new Info("", ""),
+      []
     )
   );
 

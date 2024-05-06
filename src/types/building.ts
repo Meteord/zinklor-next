@@ -3,6 +3,7 @@ import  Bringt  from "./bringt";
 import { BuildingType } from "./buildingtype";
 import { Erweiterung } from "./erweiterung";
 import Kosten from "./kosten";
+import { gebäudeTags } from "./tags";
 
 class Building {
     kosten: Kosten;
@@ -11,6 +12,9 @@ class Building {
     bringt: Bringt;
     kraft: number;
     info: Info;
+    abkürzung?: string;
+    tags: gebäudeTags[];
+
     
 
     constructor(
@@ -19,7 +23,9 @@ class Building {
         erweiterung: Erweiterung,
         bringt: Bringt,
         kraft: number,
-        info: Info
+        info: Info,
+        tags: gebäudeTags[],
+        abkürzung?: string
     ) {
         this.kosten = kosten;
         this.type = type;
@@ -27,6 +33,7 @@ class Building {
         this.bringt = bringt;
         this.kraft = kraft;
         this.info = info;
+        this.tags = tags;
     }
 
     getKosten(): Kosten {
