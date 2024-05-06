@@ -9,7 +9,6 @@ import {
   ImageListItem,
   TextField,
 } from "@mui/material";
-import { BuildingType, parseBuildingType } from "../types/buildingtype";
 import { Erweiterung, parseErweiterung } from "../types/erweiterung";
 import Kosten from "../types/kosten";
 import KostenComponent from "./costen.component";
@@ -18,6 +17,8 @@ import Info from "../types/Info";
 import InfoComponent from "./info.component";
 import BringtComponent from "./bringt.component";
 import Bringt from "../types/bringt";
+import { BuildingTags } from "../types/tags";
+import BuildingtagsComponent from "./buildingtags.component";
 const building_jpg = require("../data/building/building.jpg");
 
 export interface BuildingComponentProps {
@@ -30,7 +31,6 @@ const BuildingComponent: React.FC<BuildingComponentProps> = ({
   setBuilding,
 }: BuildingComponentProps) => {
   const [kosten, setKosten] = useState<Kosten>(building.kosten);
-  const [type, setType] = useState<BuildingType>(building.type);
   const [erweiterung, setErweiterung] = useState<Erweiterung>(
     building.erweiterung
   );
@@ -38,16 +38,17 @@ const BuildingComponent: React.FC<BuildingComponentProps> = ({
   const [bringt, setBringt] = useState<Bringt>(building.bringt);
   const [kraft, setKraft] = useState<number>(building.kraft);
   const [abkürzung, setAbkürzung] = useState<string | null>(building.abkürzung);
+  const [tags, setTags] = React.useState<BuildingTags[]>([]);
 
   const handleSubmit = () => {
     const building = new Building(
       kosten,
-      type,
       erweiterung,
       bringt,
       kraft,
       info,
-      []
+      tags,
+      abkürzung
     );
     console.log("Submit: Building" + JSON.stringify(building));
     setBuilding(building);
@@ -99,7 +100,7 @@ const BuildingComponent: React.FC<BuildingComponentProps> = ({
 
           <TextField
             label="Abkürzung"
-            value={building.abkürzung}
+            value={abkürzung}
             fullWidth
             onChange={(e) => {
               setAbkürzung(e.target.value);
@@ -148,21 +149,14 @@ const BuildingComponent: React.FC<BuildingComponentProps> = ({
         ))}
       </Select>
 
-      <InputLabel>Welche Art von Gebäude</InputLabel>
-      <Select
-        value={type}
-        onChange={(e) => {
-          setType(parseBuildingType(e.target.value));
+      <InputLabel>Welche Art von Gebäude (mehrfachauswahl möglich)?</InputLabel>
+      <BuildingtagsComponent
+        tags={tags}
+        setTags={(t) => {
+          setTags(t);
           handleSubmit();
         }}
-        fullWidth
-      >
-        {Object.values(BuildingType).map((type: string | number) => (
-          <MenuItem key={type} value={type}>
-            {type}
-          </MenuItem>
-        ))}
-      </Select>
+      ></BuildingtagsComponent>
       <Divider></Divider>
       <Typography variant="h6" component="h1" gutterBottom>
         Für was der ganze Aufwand? Was bringt das?
