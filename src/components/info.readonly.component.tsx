@@ -1,31 +1,28 @@
 import React from "react";
 import { Card, CardContent, Typography, Grid } from "@mui/material";
 
-import TitleIcon from '@mui/icons-material/Title';
-import DescriptionIcon from '@mui/icons-material/Description';
+import TitleIcon from "@mui/icons-material/Title";
+import DescriptionIcon from "@mui/icons-material/Description";
 import Info from "../types/Info";
 
-export interface InfoReadOnlyProps {
+export interface InfoReadOnlyComponentProps {
   info: Info;
 }
 
-const InfoReadOnly: React.FC<InfoReadOnlyProps> = ({ info }) => {
+const InfoReadOnlyComponent: React.FC<InfoReadOnlyComponentProps> = ({
+  info
+}) => {
   return (
-    <Card>
-      <CardContent>
+    <div>
         <Grid container spacing={2}>
           <Grid item>
-            <TitleIcon />
-            <Typography variant="h6">Name: {info.name}</Typography>
-          </Grid>
-          <Grid item>
-            <DescriptionIcon />
-            <Typography variant="h6">Beschreibung: {info.beschreibung}</Typography>
+            <Typography variant="h4">{info.name}</Typography>
+            <Typography variant="h6"> {info.beschreibung}
+            </Typography>
           </Grid>
         </Grid>
-      </CardContent>
-    </Card>
+    </div>
   );
 };
 
-export default InfoReadOnly;
+export default InfoReadOnlyComponent;

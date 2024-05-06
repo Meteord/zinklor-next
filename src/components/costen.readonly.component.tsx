@@ -1,40 +1,59 @@
 import React from "react";
-import { Card, CardContent, Typography, Grid } from "@mui/material";
+import { Typography, Grid } from "@mui/material";
 import Kosten from "../types/kosten";
-import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
-import NatureIcon from '@mui/icons-material/Nature';
-import ApartmentIcon from '@mui/icons-material/Apartment';
-import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
+import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import NatureIcon from "@mui/icons-material/Nature";
+import ApartmentIcon from "@mui/icons-material/Apartment";
+import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 
-export interface KostenReadOnlyProps {
+export interface KostenReadOnlyComponentProps {
   kosten: Kosten;
 }
 
-const KostenReadOnly: React.FC<KostenReadOnlyProps> = ({ kosten }) => {
+const KostenReadOnlyComponent: React.FC<KostenReadOnlyComponentProps> = ({
+  kosten,
+}) => {
+  const calculateMultipla = (x: number) => {
+    if (x < 100) return 1;
+    else if (x < 300) return 2;
+    else return 3;
+  };
   return (
-    <Card>
-      <CardContent>
-        <Grid container spacing={2}>
-          <Grid item>
-            <NatureIcon />
-            <Typography variant="h6">Holz: {kosten.holz}</Typography>
-          </Grid>
-          <Grid item>
-            <MonetizationOnIcon />
-            <Typography variant="h6">Gold: {kosten.gold}</Typography>
-          </Grid>
-          <Grid item>
-            <ApartmentIcon />
-            <Typography variant="h6">Stein: {kosten.stein}</Typography>
-          </Grid>
-          <Grid item>
-            <AutoFixHighIcon />
-            <Typography variant="h6">Magie: {kosten.magie}</Typography>
-          </Grid>
-        </Grid>
-      </CardContent>
-    </Card>
+    <Grid container spacing={3}>
+      <Grid item>
+        {Array(calculateMultipla(kosten.holz))
+          .fill(null)
+          .map((_, index) => (
+            <NatureIcon key={index} />
+          ))}
+        <Typography variant="h6">H: {kosten.holz}</Typography>
+      </Grid>
+      <Grid item>
+        {Array(calculateMultipla(kosten.gold))
+          .fill(null)
+          .map((_, index) => (
+            <MonetizationOnIcon key={index} />
+          ))}
+        <Typography variant="h6">G: {kosten.gold}</Typography>
+      </Grid>
+      <Grid item>
+        {Array(calculateMultipla(kosten.stein))
+          .fill(null)
+          .map((_, index) => (
+            <ApartmentIcon key={index} />
+          ))}
+        <Typography variant="h6">S: {kosten.stein}</Typography>
+      </Grid>
+      <Grid item>
+        {Array(calculateMultipla(kosten.magie))
+          .fill(null)
+          .map((_, index) => (
+            <AutoFixHighIcon key={index} />
+          ))}
+        <Typography variant="h6">M: {kosten.magie}</Typography>
+      </Grid>
+    </Grid>
   );
 };
 
-export default KostenReadOnly;
+export default KostenReadOnlyComponent;

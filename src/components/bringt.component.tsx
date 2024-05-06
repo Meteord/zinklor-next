@@ -23,7 +23,7 @@ const BringtComponent : React.FC<BringtComponentProps>= ({ bringt, setBringt }: 
     <div>
       <KostenComponent kosten={ertrag} setKosten={setErtrag} />
       <TextField
-        label="Beschreibung"
+        label="Bringt folgende Dinge:"
         value={beschreibung}
         fullWidth
         multiline

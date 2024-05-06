@@ -31,6 +31,7 @@ const BuildingComponent: React.FC<BuildingComponentProps> = ({
   setBuilding,
 }: BuildingComponentProps) => {
   const [kosten, setKosten] = useState<Kosten>(building.kosten);
+  const [braucht, setBraucht] = useState<Kosten>(building.braucht);
   const [erweiterung, setErweiterung] = useState<Erweiterung>(
     building.erweiterung
   );
@@ -48,6 +49,7 @@ const BuildingComponent: React.FC<BuildingComponentProps> = ({
       kraft,
       info,
       tags,
+      braucht,
       abkürzung
     );
     console.log("Submit: Building" + JSON.stringify(building));
@@ -157,6 +159,17 @@ const BuildingComponent: React.FC<BuildingComponentProps> = ({
           handleSubmit();
         }}
       ></BuildingtagsComponent>
+      <Divider></Divider>
+      <Typography variant="h6" component="h1" gutterBottom>
+        Lästige Betriebskosten, Peanuts!
+      </Typography>
+      <KostenComponent
+        kosten={braucht}
+        setKosten={(k) => {
+          setBraucht(k);
+          handleSubmit();
+        }}
+      ></KostenComponent>
       <Divider></Divider>
       <Typography variant="h6" component="h1" gutterBottom>
         Für was der ganze Aufwand? Was bringt das?

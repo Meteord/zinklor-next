@@ -8,6 +8,7 @@ class Building {
     kosten: Kosten;
     erweiterung: Erweiterung;
     bringt: Bringt;
+    braucht: Kosten;
     kraft: number;
     info: Info;
     abkürzung?: string;
@@ -22,6 +23,7 @@ class Building {
         kraft: number,
         info: Info,
         tags: BuildingTags[],
+        braucht: Kosten,
         abkürzung?: string
     ) {
         this.kosten = kosten;
@@ -30,6 +32,7 @@ class Building {
         this.kraft = kraft;
         this.info = info;
         this.tags = tags;
+        this.braucht = braucht;
     }
 
     getKosten(): Kosten {

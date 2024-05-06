@@ -10,6 +10,15 @@ class Kosten {
         this.stein = stein;
         this.magie = magie;
     }
+
+    diff(kosten: Kosten): Kosten {
+        return new Kosten(
+            this.holz - kosten.holz,
+            this.gold - kosten.gold,
+            this.stein - kosten.stein,
+            this.magie - kosten.magie
+        );
+    }
 }
 
 export default Kosten;
