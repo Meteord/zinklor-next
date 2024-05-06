@@ -8,6 +8,8 @@ const kalifat = require("../data/staatsform/kalifat.jpg");
 const schreckensherrschaft = require("../data/staatsform/schreckensherrschaft.jpg");
 const einsmitdernatur = require("../data/staatsform/einsmitdernatur.jpg");
 const merkantilismus = require("../data/staatsform/merkantilismus.jpg");
+const faschismus = require("../data/staatsform/faschismus.jpg");
+const kommunismus = require("../data/staatsform/kommunismus.jpg");
 
 interface StaatsformComponentProps {
   staatsform: Staatsform;
@@ -18,7 +20,9 @@ const StaatsformComponent: React.FC<StaatsformComponentProps> = ({
   staatsform,
   setStaatsform,
 }) => {
-  const [st, setSt] = useState<StaatsformObject>(getStaatsformObject(staatsform));
+  const [st, setSt] = useState<StaatsformObject>(
+    getStaatsformObject(staatsform)
+  );
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let result = event.target.value as Staatsform;
     setSt(getStaatsformObject(result));
@@ -53,49 +57,58 @@ interface StaatsformObject {
   staatsform: Staatsform;
 }
 
-
 const staatsformen: StaatsformObject[] = [
-    {
-        img: demokratie,
-        title: "Demokratie",
-        staatsform: Staatsform.Demokratie,
-    },
-    {
-        img: monarchie,
-        title: "Monarchie",
-        staatsform: Staatsform.Monarchie,
-    },
-    {
-        img: kalifat,
-        title: "Kalifat",
-        staatsform: Staatsform.Kalifat,
-    },
-    {
-        img: schreckensherrschaft,
-        title: "Schreckensherrschaft",
-        staatsform: Staatsform.Schreckensherrschaft,
-    },
-    {
-        img: merkantilismus,
-        title: "Merkantilismus",
-        staatsform: Staatsform.Merkantilismus,
-    },
-    {
-        img: einsmitdernatur,
-        title: "Eins mit der Natur",
-        staatsform: Staatsform.EinsMitDerNatur,
-    },
+  {
+    img: demokratie,
+    title: "Demokratie",
+    staatsform: Staatsform.Demokratie,
+  },
+  {
+    img: monarchie,
+    title: "Monarchie",
+    staatsform: Staatsform.Monarchie,
+  },
+  {
+    img: kalifat,
+    title: "Kalifat",
+    staatsform: Staatsform.Kalifat,
+  },
+  {
+    img: schreckensherrschaft,
+    title: "Schreckensherrschaft",
+    staatsform: Staatsform.Schreckensherrschaft,
+  },
+  {
+    img: merkantilismus,
+    title: "Merkantilismus",
+    staatsform: Staatsform.Merkantilismus,
+  },
+  {
+    img: einsmitdernatur,
+    title: "Eins mit der Natur",
+    staatsform: Staatsform.EinsMitDerNatur,
+  },
+  {
+    img: faschismus,
+    title: "Faschismus",
+    staatsform: Staatsform.Faschismus,
+  },
+  {
+    img: kommunismus,
+    title: "Kommunismus",
+    staatsform: Staatsform.Kommunismus,
+  },
 ];
 
 const getStaatsformObject = (staatsform: Staatsform): StaatsformObject => {
-  let result = staatsformen.find((form) => form.staatsform === staatsform) as StaatsformObject;
-  if (result === undefined){
+  let result = staatsformen.find(
+    (form) => form.staatsform === staatsform
+  ) as StaatsformObject;
+  if (result === undefined) {
     return staatsformen[0];
-  }
-  else  {
+  } else {
     return result;
   }
-}
-
+};
 
 export default StaatsformComponent;
