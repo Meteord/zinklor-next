@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Select, MenuItem, ImageListItem } from "@mui/material";
 import Staatsform from "../types/staatsform";
-import { get } from "http";
 const demokratie = require("../data/staatsform/demokratie.jpg");
 const monarchie = require("../data/staatsform/monarchie.jpg");
 const kalifat = require("../data/staatsform/kalifat.jpg");

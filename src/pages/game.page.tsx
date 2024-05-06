@@ -15,6 +15,7 @@ import Kosten from "../types/kosten";
 import Info from "../types/Info";
 import InfoComponent from "../components/info.component";
 import StaatsformComponent from "../components/staatsform.component";
+import SpellComponent from "../components/spell.component";
 
 enum GamePageState {
   UNSTARTED = "UNSTARTED",
@@ -28,7 +29,7 @@ const GamePage: React.FC = () => {
   );
   const [activeStep, setActiveStep] = useState(0);
   const [state, setState] = useState<GameState>(
-    new GameState(new Kosten(0, 500, 0, 0), 0, new Info("", ""), null, [], null)
+    new GameState(new Kosten(0, 500, 0, 0), 0, new Info("", ""), null, [], null, null)
   );
   const steps = ["Wer bist du, Alter?", "Ganz normale Spieleinstellungen"];
 
@@ -118,6 +119,12 @@ const GamePage: React.FC = () => {
                       <Typography variant="h6" component="h2" gutterBottom>
                         Zauber
                       </Typography>
+                      <SpellComponent
+                        spell={state.spell}
+                        setSpell={(sp) =>
+                          setState({ ...state, ...{ spell: sp } })
+                        }
+                      ></SpellComponent>
                     </Box>
                   )}
                 </Step>

@@ -12,13 +12,13 @@ const ZinklorAppBar: React.FC = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link to={`/game`}>Spiel</Link>
+            <Link to={`/game`}>Spielen</Link>
           </Typography>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link to={`/ultimatives`}>Ultimatives</Link>
           </Typography>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link to={`/admin`}>Admin</Link>
+            <Link to={`/admin`}>Erweitern</Link>
           </Typography>
           <Button color="inherit">Einstellungen</Button>
         </Toolbar>
