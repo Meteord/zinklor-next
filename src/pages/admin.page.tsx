@@ -69,13 +69,7 @@ const AdminPage: React.FC = () => {
             indicatorColor="secondary"
             aria-label="secondary tabs example"
             centered
-            sx={{
-              backgroundColor: "darkgreen",
-              color: "#aaa",
-              "& .Mui-selected": {
-                color: "#fff",
-              },
-            }}
+            
           >
             <Tab value="unit" label="Einheit" />
             <Tab value="building" label="Gebäude" />

@@ -7,6 +7,23 @@ import ZinklorAppBar from "./components/appbar.component";
 import ErrorPage from "./pages/error.page";
 import UltimatePage from "./pages/ultimate.page";
 import AdminPage from "./pages/admin.page";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1ac5b9',
+    },
+    secondary: {
+      main: '#f50057',
+    },
+  },
+  typography: {
+    button: {
+      textTransform: 'none',
+    },
+  },
+});
+
 
 export default function App() {
   let routes: RouteObject[] = [
@@ -23,10 +40,11 @@ export default function App() {
     },
   ];
 
+
   // The useRoutes() hook allows you to define your routes as JavaScript objects
   // instead of <Routes> and <Route> elements. This is really just a style
   // preference for those who prefer to not use JSX for their routes config.
   let element = useRoutes(routes);
 
-  return <div>{element}</div>;
+  return <ThemeProvider theme={theme}>{element}</ThemeProvider>;
 }

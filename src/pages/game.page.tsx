@@ -90,12 +90,17 @@ const GamePage: React.FC = () => {
               <Stepper activeStep={activeStep} alternativeLabel>
                 <Step key={steps[0]}>
                   <StepLabel>{steps[0]}</StepLabel>
-                  {activeStep === 0 && (
+                </Step>
+                <Step key={steps[1]}>
+                  <StepLabel>{steps[1]}</StepLabel>
+                </Step>
+              </Stepper>
+              {activeStep === 0 && (
                     <Box
                       my={4}
                       display="flex"
                       flexDirection="column"
-                      alignItems="center"
+                      alignItems="start"
                       sx={{ width: "100%" }}
                     >
                       <Typography variant="h6" component="h2" gutterBottom>
@@ -146,11 +151,6 @@ const GamePage: React.FC = () => {
                       ></SpellComponent>
                     </Box>
                   )}
-                </Step>
-                <Step key={steps[1]}>
-                  <StepLabel>{steps[1]}</StepLabel>
-                </Step>
-              </Stepper>
               <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
                 <Button color="inherit" onClick={handleBack} sx={{ mr: 1 }}>
                   Zurück Diggi
