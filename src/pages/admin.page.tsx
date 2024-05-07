@@ -9,7 +9,7 @@ import {
   Tabs,
 } from "@mui/material";
 import Building from "../types/building";
-import { Erweiterung } from "../types/erweiterung";
+import { ErweiterungType } from "../types/erweiterung";
 import Kosten from "../types/kosten";
 import Bringt from "../types/bringt";
 import Info from "../types/Info";
@@ -22,7 +22,7 @@ const AdminPage: React.FC = () => {
   const [building, setBuilding] = React.useState<Building>(
     new Building(
       new Kosten(0, 0, 0, 0),
-      Erweiterung.Eis,
+      ErweiterungType.Eis,
       new Bringt("", new Kosten(0, 0, 0, 0)),
       0,
       new Info("", ""),

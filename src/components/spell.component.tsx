@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Select, MenuItem, ImageListItem } from "@mui/material";
+import { Select, MenuItem, ImageListItem, Avatar, Chip } from "@mui/material";
 import Spell from "../types/spell";
 const eis = require("../data/spell/eis.jpg");
 const erde = require("../data/spell/erde.jpg");
@@ -27,21 +27,23 @@ const SpellComponent: React.FC<SpellComponentProps> = ({
   return (
     <div>
       <Select value={spell} onChange={handleChange} fullWidth>
-        {Object.values(Spell).map((form) => (
-          <MenuItem key={form} value={form}>
-            {form}
+        {spells.map((spellObj) => (
+          <MenuItem key={spellObj.spell} value={spellObj.spell}>
+            <Chip
+              avatar={<Avatar src={spellObj.img} />}
+              label={spellObj.title}
+            />
           </MenuItem>
         ))}
       </Select>
-
       <ImageListItem>
-        <img
-          srcSet={`${st.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-          src={`${st.img}?w=164&h=164&fit=crop&auto=format`}
-          alt={st.title}
-          loading="lazy"
-        />
-      </ImageListItem>
+          <img
+            srcSet={`${st.img}?w=250&h=250&fit=crop&auto=format&dpr=2 2x`}
+            src={`${st.img}?w=250&h=250&fit=crop&auto=format`}
+            alt={st.title}
+            loading="lazy"
+          />
+        </ImageListItem>
     </div>
   );
 };

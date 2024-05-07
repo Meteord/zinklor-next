@@ -1,12 +1,12 @@
 import Info from "./Info";
 import Bringt from "./bringt";
-import { Erweiterung } from "./erweiterung";
+import { ErweiterungType } from "./erweiterung";
 import Kosten from "./kosten";
 import { BuildingTags } from "./tags";
 
 class Building {
   kosten: Kosten;
-  erweiterung: Erweiterung;
+  erweiterung: ErweiterungType;
   bringt: Bringt;
   braucht: Kosten;
   kraft: number;
@@ -17,7 +17,7 @@ class Building {
 
   constructor(
     kosten: Kosten,
-    erweiterung: Erweiterung,
+    erweiterung: ErweiterungType,
     bringt: Bringt,
     kraft: number,
     info: Info,

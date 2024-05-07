@@ -39,6 +39,7 @@ const GamePage: React.FC = () => {
       new Staatsform(Staatsformtype.Demokratie, []),
       [],
       null,
+      null,
       null
     )
   );

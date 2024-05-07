@@ -1,4 +1,6 @@
-export enum Erweiterung {
+import Info from "./Info";
+
+export enum ErweiterungType {
     Mitte = 'Mitte',
     Eis = 'Eis',
     Wasser = 'Wasser',
@@ -10,10 +12,18 @@ export enum Erweiterung {
     Orks = 'Orks'
 }
 
+export class Erweiterung{
+    type: ErweiterungType;
+    info: Info;
+    constructor(type: ErweiterungType, info: Info) {
+        this.type = type;
+        this.info = info;
+    }
+}
 
-export function parseErweiterung(value: string): Erweiterung | null {
-    if (Object.values(Erweiterung).includes(value as Erweiterung)) {
-        return value as Erweiterung;
+export function parseErweiterung(value: string): ErweiterungType | null {
+    if (Object.values(ErweiterungType).includes(value as ErweiterungType)) {
+        return value as ErweiterungType;
     }
     return null;
 }

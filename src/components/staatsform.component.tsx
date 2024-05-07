@@ -5,6 +5,8 @@ import {
   ImageListItem,
   Typography,
   Box,
+  Avatar,
+  Chip,
 } from "@mui/material";
 import Staatsform, { Staatsformtype } from "../types/staatsform";
 import Info from "../types/Info";
@@ -39,9 +41,9 @@ const StaatsformComponent: React.FC<StaatsformComponentProps> = ({
   return (
     <div>
       <Select value={staatsform.type} onChange={handleChange} fullWidth>
-        {Object.values(Staatsformtype).map((form) => (
-          <MenuItem key={form} value={form}>
-            {form}
+        {staatsformen.map((form) => (
+          <MenuItem key={form.type} value={form.title}>
+            <Chip avatar={<Avatar src={form.img} />} label={form.title} />
           </MenuItem>
         ))}
       </Select>
@@ -108,10 +110,7 @@ const staatsformen: StaatsformObject[] = [
     type: Staatsformtype.Monarchie,
     staatsform: new Staatsform(Staatsformtype.Monarchie, [
       new Info("Fetter Kine", "Fett am flexen"),
-      new Info(
-        "Krasse Ritter",
-        "Yeah"
-      ),
+      new Info("Krasse Ritter", "Yeah"),
     ]),
   },
   {
@@ -126,14 +125,8 @@ const staatsformen: StaatsformObject[] = [
     type: Staatsformtype.Schreckensherrschaft,
     staatsform: new Staatsform(Staatsformtype.Schreckensherrschaft, [
       new Info("Doppelte Produktion", "Doppelte Produktion.."),
-      new Info(
-        "Revolution",
-        "Alle n Runden armee Platt"
-      ),
-      new Info(
-        "Meuterei",
-        "Wenn Gebäude zerstört, werden SW gespawnt."
-      ),
+      new Info("Revolution", "Alle n Runden armee Platt"),
+      new Info("Meuterei", "Wenn Gebäude zerstört, werden SW gespawnt."),
     ]),
   },
   {

@@ -9,7 +9,7 @@ import {
   ImageListItem,
   TextField,
 } from "@mui/material";
-import { Erweiterung, parseErweiterung } from "../types/erweiterung";
+import { ErweiterungType, parseErweiterung } from "../types/erweiterung";
 import Kosten from "../types/kosten";
 import KostenComponent from "./costen.component";
 import Building from "../types/building";
@@ -32,7 +32,7 @@ const BuildingComponent: React.FC<BuildingComponentProps> = ({
 }: BuildingComponentProps) => {
   const [kosten, setKosten] = useState<Kosten>(building.kosten);
   const [braucht, setBraucht] = useState<Kosten>(building.braucht);
-  const [erweiterung, setErweiterung] = useState<Erweiterung>(
+  const [erweiterung, setErweiterung] = useState<ErweiterungType>(
     building.erweiterung
   );
   const [info, setInfo] = useState<Info>(building.info);
@@ -141,11 +141,11 @@ const BuildingComponent: React.FC<BuildingComponentProps> = ({
         value={erweiterung}
         onChange={(e) => {
           setErweiterung(parseErweiterung(e.target.value));
-          handleSubmit({...building, erweiterung: e.target.value as Erweiterung});
+          handleSubmit({...building, erweiterung: e.target.value as ErweiterungType});
         }}
         fullWidth
       >
-        {Object.values(Erweiterung).map((erweiterung) => (
+        {Object.values(ErweiterungType).map((erweiterung) => (
           <MenuItem key={erweiterung} value={erweiterung}>
             {erweiterung}
           </MenuItem>

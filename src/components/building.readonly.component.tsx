@@ -10,6 +10,7 @@ import {
 import Building from "../types/building";
 import InfoReadOnlyComponent from "./info.readonly.component";
 import KostenListeReadOnlyComponent from "./costenliste.readonly.component";
+import ErweiterungReadonlyComponent from "./erweiterung.readonly.component";
 const building_jpg = require("../data/building/atlantis.jpg");
 
 export interface BuildingReadonlyComponentProps {
@@ -48,6 +49,8 @@ const BuildingReadonlyComponent: React.FC<BuildingReadonlyComponentProps> = ({
             {building.tags.map((option: string, index: number) => (
               <Chip variant="outlined" label={option} key={index} />
             ))}
+            <ErweiterungReadonlyComponent onlyImage erweiterung={building.erweiterung}></ErweiterungReadonlyComponent>
+          
           </div>
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -60,11 +63,6 @@ const BuildingReadonlyComponent: React.FC<BuildingReadonlyComponentProps> = ({
                 </Typography>
               </Grid>
             )}
-            <Grid item xs={12}>
-              <Typography variant="h6">
-                Erweiterung: {building.erweiterung}
-              </Typography>
-            </Grid>
             <Grid item xs={12}>
               <Typography variant="h6">
                 Effekt: {building.bringt.beschreibung}
