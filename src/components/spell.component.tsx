@@ -54,11 +54,6 @@ interface SpellObject {
 
 const spells: SpellObject[] = [
   {
-    img: erde,
-    title: "Erde",
-    spell: Spell.Erde
-  },
-  {
     img: feuer,
     title: "Feuer",
     spell: Spell.Feuer
@@ -72,6 +67,11 @@ const spells: SpellObject[] = [
     img: eis,
     title: "Eis",
     spell: Spell.Eis
+  },
+  {
+    img: erde,
+    title: "Erde",
+    spell: Spell.Erde
   },
 ];
 

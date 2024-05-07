@@ -13,6 +13,7 @@ class Building {
   info: Info;
   abkürzung?: string;
   tags: BuildingTags[];
+  //TODO einheiten
 
   constructor(
     kosten: Kosten,
@@ -31,14 +32,6 @@ class Building {
     this.info = info;
     this.tags = tags;
     this.braucht = braucht;
-  }
-
-  getKosten(): Kosten {
-    return this.kosten;
-  }
-
-  getErweiterung(): Erweiterung {
-    return this.erweiterung;
   }
 }
 

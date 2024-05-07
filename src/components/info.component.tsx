@@ -16,13 +16,15 @@ const InfoComponent: React.FC<InfoComponentProps> = ({
   labelBeschreibung = "Beschreibung",
 }) => {
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInfo({ ...info, name: event.target.value });
+    console.log("Info, titel geändert: " + event.target.value);
+    setInfo(new Info(event.target.value, info.beschreibung));
   };
 
   const handleDescriptionChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setInfo({ ...info, beschreibung: event.target.value });
+    console.log("Info, beschreibung geändert: " + event.target.value);
+    setInfo(new Info(info.beschreibung, event.target.value));
   };
 
   return (

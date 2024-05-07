@@ -15,8 +15,8 @@ export enum UnitTags {
     Zaubernd = "zaubernd",
     Böse    = "böse",
     Normal  = "normal",
-    könig  = "könig",
-    Held   = "held",
+    Königend  = "königend",
+    Heldend   = "heldend",
     Schwimmend = "schwimmend",
     Sandeinheit = "sandeinheit",
 }

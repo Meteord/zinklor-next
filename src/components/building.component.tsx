@@ -41,8 +41,8 @@ const BuildingComponent: React.FC<BuildingComponentProps> = ({
   const [abkürzung, setAbkürzung] = useState<string | null>(building.abkürzung);
   const [tags, setTags] = React.useState<BuildingTags[]>([]);
 
-  const handleSubmit = () => {
-    const building = new Building(
+  const handleSubmit = (nextState?: Building) => {
+    const building = nextState? nextState: new Building(
       kosten,
       erweiterung,
       bringt,
@@ -87,7 +87,7 @@ const BuildingComponent: React.FC<BuildingComponentProps> = ({
             labelName="Name dieses unvergleichlichen Prachtstücks vong Gebäude"
             setInfo={(info) => {
               setInfo(info);
-              handleSubmit();
+              handleSubmit({...building, info: info});
             }}
           ></InfoComponent>
           <TextField
@@ -95,8 +95,9 @@ const BuildingComponent: React.FC<BuildingComponentProps> = ({
             value={kraft}
             fullWidth
             onChange={(e) => {
-              setKraft(Number(e.target.value));
-              handleSubmit();
+              let kraft = parseInt(e.target.value);
+              setKraft(kraft);
+              handleSubmit({...building, kraft: kraft});
             }}
           />
 
@@ -106,7 +107,7 @@ const BuildingComponent: React.FC<BuildingComponentProps> = ({
             fullWidth
             onChange={(e) => {
               setAbkürzung(e.target.value);
-              handleSubmit();
+              handleSubmit({...building, abkürzung: e.target.value});
             }}
           />
         </Box>
@@ -128,7 +129,7 @@ const BuildingComponent: React.FC<BuildingComponentProps> = ({
         kosten={kosten}
         setKosten={(k) => {
           setKosten(k);
-          handleSubmit();
+          handleSubmit({...building, kosten: k});
         }}
       ></KostenComponent>
       <Divider></Divider>
@@ -140,7 +141,7 @@ const BuildingComponent: React.FC<BuildingComponentProps> = ({
         value={erweiterung}
         onChange={(e) => {
           setErweiterung(parseErweiterung(e.target.value));
-          handleSubmit();
+          handleSubmit({...building, erweiterung: e.target.value as Erweiterung});
         }}
         fullWidth
       >
@@ -156,7 +157,7 @@ const BuildingComponent: React.FC<BuildingComponentProps> = ({
         tags={tags}
         setTags={(t) => {
           setTags(t);
-          handleSubmit();
+          handleSubmit({...building, tags: t});
         }}
       ></BuildingtagsComponent>
       <Divider></Divider>
@@ -167,7 +168,7 @@ const BuildingComponent: React.FC<BuildingComponentProps> = ({
         kosten={braucht}
         setKosten={(k) => {
           setBraucht(k);
-          handleSubmit();
+          handleSubmit({...building, braucht: k});
         }}
       ></KostenComponent>
       <Divider></Divider>
@@ -178,7 +179,7 @@ const BuildingComponent: React.FC<BuildingComponentProps> = ({
         bringt={bringt}
         setBringt={(bringt) => {
           setBringt(bringt);
-          handleSubmit();
+          handleSubmit({...building, bringt: bringt});
         }}
       ></BringtComponent>
     </Box>

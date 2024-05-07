@@ -1,8 +1,6 @@
 import React from "react";
-import { Card, CardContent, Typography, Grid } from "@mui/material";
+import { Typography, Grid } from "@mui/material";
 
-import TitleIcon from "@mui/icons-material/Title";
-import DescriptionIcon from "@mui/icons-material/Description";
 import Info from "../types/Info";
 
 export interface InfoReadOnlyComponentProps {

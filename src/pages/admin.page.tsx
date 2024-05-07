@@ -7,7 +7,6 @@ import {
   CardContent,
   Tab,
   Tabs,
-  Typography,
 } from "@mui/material";
 import Building from "../types/building";
 import { Erweiterung } from "../types/erweiterung";
@@ -15,7 +14,7 @@ import Kosten from "../types/kosten";
 import Bringt from "../types/bringt";
 import Info from "../types/Info";
 import BuildingReadonlyComponent from "../components/building.readonly.component";
-import { instanceToPlain, serialize } from "class-transformer";
+import { instanceToPlain } from "class-transformer";
 
 const AdminPage: React.FC = () => {
   const [value, setValue] = React.useState("unit");

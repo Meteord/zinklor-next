@@ -1,6 +1,6 @@
 import React from "react";
 import type { RouteObject } from "react-router-dom";
-import { Outlet, Link, useRoutes, useParams } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
 import LandingPage from "./pages/landing.page";
 import GamePage from "./pages/game.page";
 import ZinklorAppBar from "./components/appbar.component";
