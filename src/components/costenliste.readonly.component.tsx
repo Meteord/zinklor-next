@@ -46,35 +46,15 @@ const KostenListeReadOnlyComponent: React.FC<
             <TableRow key={index}>
               <TableCell>{labels[index]}</TableCell>
               <TableCell>
-                {Array(calculateMultipla(kosten.holz))
-                  .fill(null)
-                  .map((_, index) => (
-                    <NatureIcon key={index} />
-                  ))}
                 {kosten.holz}
               </TableCell>
               <TableCell>
-                {Array(calculateMultipla(kosten.gold))
-                  .fill(null)
-                  .map((_, index) => (
-                    <MonetizationOnIcon key={index} />
-                  ))}
                 {kosten.gold}
               </TableCell>
               <TableCell>
-                {Array(calculateMultipla(kosten.stein))
-                  .fill(null)
-                  .map((_, index) => (
-                    <ApartmentIcon key={index} />
-                  ))}
                 {kosten.stein}
               </TableCell>
               <TableCell>
-                {Array(calculateMultipla(kosten.magie))
-                  .fill(null)
-                  .map((_, index) => (
-                    <AutoFixHighIcon key={index} />
-                  ))}
                 {kosten.magie}
               </TableCell>
             </TableRow>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextField } from "@mui/material";
+import { FormControl, FormHelperText, TextField } from "@mui/material";
 import Kosten from "../types/kosten";
 
 export interface KostenComponentProps {
@@ -7,7 +7,10 @@ export interface KostenComponentProps {
   setKosten: (kosten: Kosten) => void;
 }
 
-const KostenComponent : React.FC<KostenComponentProps>= ({ kosten, setKosten }: KostenComponentProps) => {
+const KostenComponent: React.FC<KostenComponentProps> = ({
+  kosten,
+  setKosten,
+}: KostenComponentProps) => {
   const [holz, setHolz] = useState<number>(kosten.holz);
   const [gold, setGold] = useState<number>(kosten.gold);
   const [stein, setStein] = useState<number>(kosten.stein);
@@ -24,7 +27,7 @@ const KostenComponent : React.FC<KostenComponentProps>= ({ kosten, setKosten }: 
         label="Holz"
         value={holz}
         onChange={(e) => {
-          let h = parseInt(e.target.value)
+          let h = parseInt(e.target.value);
           setHolz(h);
           handleSubmit(new Kosten(h, gold, stein, magie));
         }}
@@ -33,7 +36,7 @@ const KostenComponent : React.FC<KostenComponentProps>= ({ kosten, setKosten }: 
         label="Gold"
         value={gold}
         onChange={(e) => {
-          let g = parseInt(e.target.value)
+          let g = parseInt(e.target.value);
           setGold(g);
           handleSubmit(new Kosten(holz, g, stein, magie));
         }}
@@ -42,7 +45,7 @@ const KostenComponent : React.FC<KostenComponentProps>= ({ kosten, setKosten }: 
         label="Stein"
         value={stein}
         onChange={(e) => {
-          let s = parseInt(e.target.value)
+          let s = parseInt(e.target.value);
           setStein(s);
           handleSubmit(new Kosten(holz, gold, s, magie));
         }}
@@ -51,7 +54,7 @@ const KostenComponent : React.FC<KostenComponentProps>= ({ kosten, setKosten }: 
         label="Magie"
         value={magie}
         onChange={(e) => {
-          let m= parseInt(e.target.value)
+          let m = parseInt(e.target.value);
           setMagie(m);
           handleSubmit(new Kosten(holz, gold, stein, m));
         }}

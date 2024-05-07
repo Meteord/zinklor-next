@@ -19,7 +19,7 @@ import BringtComponent from "./bringt.component";
 import Bringt from "../types/bringt";
 import { BuildingTags } from "../types/tags";
 import BuildingtagsComponent from "./buildingtags.component";
-const building_jpg = require("../data/building/building.jpg");
+const building_jpg = require("../data/building/atlantis.jpg");
 
 export interface BuildingComponentProps {
   building: Building;

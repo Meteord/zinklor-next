@@ -24,7 +24,7 @@ const InfoComponent: React.FC<InfoComponentProps> = ({
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     console.log("Info, beschreibung geändert: " + event.target.value);
-    setInfo(new Info(info.beschreibung, event.target.value));
+    setInfo(new Info(info.name, event.target.value));
   };
 
   return (

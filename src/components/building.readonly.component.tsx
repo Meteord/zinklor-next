@@ -9,9 +9,8 @@ import {
 } from "@mui/material";
 import Building from "../types/building";
 import InfoReadOnlyComponent from "./info.readonly.component";
-import KostenReadOnlyComponent from "./costen.readonly.component";
 import KostenListeReadOnlyComponent from "./costenliste.readonly.component";
-const building_jpg = require("../data/building/building.jpg");
+const building_jpg = require("../data/building/atlantis.jpg");
 
 export interface BuildingReadonlyComponentProps {
   building: Building;
