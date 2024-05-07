@@ -1,13 +1,6 @@
 import React from "react";
 import BuildingComponent from "../components/building.component";
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Tab,
-  Tabs,
-} from "@mui/material";
+import { Box, Button, Card, CardContent, Tab, Tabs } from "@mui/material";
 import Building from "../types/building";
 import { ErweiterungType } from "../types/erweiterung";
 import Kosten from "../types/kosten";
@@ -15,6 +8,8 @@ import Bringt from "../types/bringt";
 import Info from "../types/Info";
 import BuildingReadonlyComponent from "../components/building.readonly.component";
 import { instanceToPlain } from "class-transformer";
+import { Einheit } from "../types/einheit";
+import EinheitComponent from "../components/einheit.component";
 
 const AdminPage: React.FC = () => {
   const [value, setValue] = React.useState("unit");
@@ -30,6 +25,10 @@ const AdminPage: React.FC = () => {
       new Kosten(0, 0, 0, 0),
       ""
     )
+  );
+
+  const [einheit, setEinheit] = React.useState<Einheit>(
+    new Einheit(new Kosten(0, 0, 0, 0), new Info("", ""), "", null, 0, [], [])
   );
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -68,7 +67,6 @@ const AdminPage: React.FC = () => {
             indicatorColor="secondary"
             aria-label="secondary tabs example"
             centered
-            
           >
             <Tab value="unit" label="Einheit" />
             <Tab value="building" label="Gebäude" />
@@ -106,7 +104,9 @@ const AdminPage: React.FC = () => {
               )}
             </div>
           ) : (
-            <div></div>
+            <EinheitComponent
+              einheit={einheit}
+              setEinheit={setEinheit}></EinheitComponent>
           )}
         </CardContent>
       </Card>
