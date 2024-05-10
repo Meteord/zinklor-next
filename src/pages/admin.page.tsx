@@ -12,10 +12,18 @@ import { Einheit } from "../types/einheit";
 import EinheitComponent from "../components/einheit.component";
 import Transport from "../types/transport";
 import Bewegung from "../types/bewergung";
+import EinheitReadonlyComponent from "../components/einheit.readonly.component";
+
+enum AdminPageTabs {
+  Unit = "unit",
+  Building = "building",
+  Else = "else",
+}
 
 const AdminPage: React.FC = () => {
   const [value, setValue] = React.useState("unit");
-  const [preview, isPreview] = React.useState(false);
+  const [buildingPreview, isBuildingPreview] = React.useState(false);
+  const [unitPreview, isUnitPreview] = React.useState(false);
   const [building, setBuilding] = React.useState<Building>(
     new Building(
       new Kosten(0, 0, 0, 0),
@@ -30,7 +38,16 @@ const AdminPage: React.FC = () => {
   );
 
   const [einheit, setEinheit] = React.useState<Einheit>(
-    new Einheit(new Kosten(0, 0, 0, 0), new Info("", ""), "", new Bewegung(0,0), 0, [], [], new Transport(0,0))
+    new Einheit(
+      new Kosten(0, 0, 0, 0),
+      new Info("", ""),
+      "",
+      new Bewegung(0, 0),
+      0,
+      [],
+      [],
+      new Transport(0, 0)
+    )
   );
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -38,13 +55,20 @@ const AdminPage: React.FC = () => {
   };
 
   const exportData = () => {
-    let exported = JSON.stringify(instanceToPlain(building));
+    let exported, name = null;
+    if (value === AdminPageTabs.Unit) {
+      exported = JSON.stringify(instanceToPlain(einheit));
+      name = einheit.info.name;
+    } else if (value === AdminPageTabs.Building) {
+      exported = JSON.stringify(instanceToPlain(building));
+      name = building.info.name;
+    }
     const blob = new Blob([exported], { type: "application/json" });
     const url = URL.createObjectURL(blob);
 
     const link = document.createElement("a");
     link.href = url;
-    link.download = building.info.name + ".json";
+    link.download = name + ".json";
     link.click();
 
     // Freigabe der Blob-URL
@@ -70,13 +94,13 @@ const AdminPage: React.FC = () => {
             aria-label="secondary tabs example"
             centered
           >
-            <Tab value="unit" label="Einheit" />
-            <Tab value="building" label="Gebäude" />
-            <Tab value="else" label="Sonstiges" />
+            <Tab value={AdminPageTabs.Unit} label="Einheit" />
+            <Tab value={AdminPageTabs.Building} label="Gebäude" />
+            <Tab value={AdminPageTabs.Else} label="Sonstiges" />
           </Tabs>
-          {value === "building" ? (
+          {value === AdminPageTabs.Building ? (
             <div>
-              {preview ? (
+              {buildingPreview ? (
                 <BuildingReadonlyComponent
                   building={building}
                 ></BuildingReadonlyComponent>
@@ -88,12 +112,12 @@ const AdminPage: React.FC = () => {
               )}
               <Button
                 onClick={() => {
-                  isPreview(!preview);
+                  isBuildingPreview(!buildingPreview);
                 }}
               >
-                {preview ? <div>Zurück</div> : <div>Zur Vorschau</div>}
+                {buildingPreview ? <div>Zurück</div> : <div>Zur Vorschau</div>}
               </Button>
-              {preview ? (
+              {buildingPreview ? (
                 <Button
                   onClick={() => {
                     exportData();
@@ -106,9 +130,38 @@ const AdminPage: React.FC = () => {
               )}
             </div>
           ) : (
-            <EinheitComponent
-              einheit={einheit}
-              setEinheit={setEinheit}></EinheitComponent>
+            <div>
+              {!unitPreview ? (
+                <EinheitComponent
+                  einheit={einheit}
+                  setEinheit={setEinheit}
+                  useDefaultImage
+                ></EinheitComponent>
+              ) : (
+                <EinheitReadonlyComponent
+                  einheit={einheit}
+                  useDefaultImage
+                ></EinheitReadonlyComponent>
+              )}
+              <Button
+                onClick={() => {
+                  isUnitPreview(!unitPreview);
+                }}
+              >
+                {unitPreview ? <div>Zurück</div> : <div>Zur Vorschau</div>}
+              </Button>
+              {unitPreview ? (
+                <Button
+                  onClick={() => {
+                    exportData();
+                  }}
+                >
+                  Export
+                </Button>
+              ) : (
+                <div></div>
+              )}
+            </div>
           )}
         </CardContent>
       </Card>

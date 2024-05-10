@@ -19,16 +19,17 @@ import TransportComponent from "./transport.component";
 import BewegungComponent from "./bewegung.component";
 import UnittagsComponent from "./unittags.component";
 import { UnitTags } from "../types/tags";
-const einheit_jpg = require("../data/unit/engel.jpg");
 
 export interface EinheitComponentProps {
   einheit: Einheit;
   setEinheit: (einheit: Einheit) => void;
+  useDefaultImage: boolean;
 }
 
 const EinheitComponent: React.FC<EinheitComponentProps> = ({
   einheit,
   setEinheit,
+  useDefaultImage
 }: EinheitComponentProps) => {
   const [kosten, setKosten] = useState<Kosten>(einheit.kosten);
   const [info, setInfo] = useState<Info>(einheit.info);
@@ -38,6 +39,10 @@ const EinheitComponent: React.FC<EinheitComponentProps> = ({
   const [transport, setTransport] = useState<Transport>(einheit.transport);
   const [bewegung, setBewegung] = useState<Bewegung>(einheit.bewegung);
   const [tags, setTags] = React.useState<UnitTags[]>(einheit.tags);
+
+  const einheit_jpg = useDefaultImage
+    ? require(`../data/unit/default.jpg`)
+    : require(`../data/unit/${einheit.info.name}.jpg`);
 
   const handleSubmit = (nextState?: Einheit) => {
     const einheit = nextState

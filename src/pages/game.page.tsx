@@ -18,7 +18,7 @@ import InfoComponent from "../components/info.component";
 import StaatsformComponent from "../components/staatsform.component";
 import SpellComponent from "../components/spell.component";
 import Staatsform, { Staatsformtype } from "../types/staatsform";
-const koenigjpg = require("../data/unit/könig.jpg");
+const koenigjpg = require("../data/unit/König.jpg");
 
 enum GamePageState {
   UNSTARTED = "UNSTARTED",
