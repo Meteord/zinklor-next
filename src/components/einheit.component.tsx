@@ -13,6 +13,10 @@ import InfoComponent from "./info.component";
 import { Einheit } from "../types/einheit";
 import Transport from "../types/transport";
 import Bewegung from "../types/bewergung";
+import EffektListeComponent from "./effektliste.component";
+import Effekt from "../types/effekt";
+import TransportComponent from "./transport.component";
+import BewegungComponent from "./bewegung.component";
 const einheit_jpg = require("../data/unit/engel.jpg");
 
 export interface EinheitComponentProps {
@@ -28,9 +32,23 @@ const EinheitComponent: React.FC<EinheitComponentProps> = ({
   const [info, setInfo] = useState<Info>(einheit.info);
   const [kraft, setKraft] = useState<number>(einheit.kraft);
   const [abkürzung, setAbkürzung] = useState<string | null>(einheit.abkürzung);
+  const [effekte, setEffekte] = useState<Effekt[]>(einheit.effekte);
+  const [transport, setTransport] = useState<Transport>(einheit.transport);
+  const [bewegung, setBewegung] = useState<Bewegung>(einheit.bewegung);
 
   const handleSubmit = (nextState?: Einheit) => {
-    const einheit = nextState? nextState: new Einheit(new Kosten(0, 0, 0, 0), new Info("", ""), "",new Bewegung(0,0),  0, [], [], new Transport(0,0));
+    const einheit = nextState
+      ? nextState
+      : new Einheit(
+          new Kosten(0, 0, 0, 0),
+          new Info("", ""),
+          "",
+          new Bewegung(0, 0),
+          0,
+          [],
+          [],
+          new Transport(0, 0)
+        );
     console.log("Submit: Einheit" + JSON.stringify(einheit));
     setEinheit(einheit);
   };
@@ -66,7 +84,7 @@ const EinheitComponent: React.FC<EinheitComponentProps> = ({
             labelName="Wie heißt die Einheit?"
             setInfo={(info) => {
               setInfo(info);
-              handleSubmit({...einheit, info: info});
+              handleSubmit({ ...einheit, info: info });
             }}
           ></InfoComponent>
           <TextField
@@ -76,7 +94,7 @@ const EinheitComponent: React.FC<EinheitComponentProps> = ({
             onChange={(e) => {
               let kraft = parseInt(e.target.value);
               setKraft(kraft);
-              handleSubmit({...einheit, kraft: kraft});
+              handleSubmit({ ...einheit, kraft: kraft });
             }}
           />
 
@@ -86,7 +104,7 @@ const EinheitComponent: React.FC<EinheitComponentProps> = ({
             fullWidth
             onChange={(e) => {
               setAbkürzung(e.target.value);
-              handleSubmit({...einheit, abkürzung: e.target.value});
+              handleSubmit({ ...einheit, abkürzung: e.target.value });
             }}
           />
         </Box>
@@ -99,6 +117,28 @@ const EinheitComponent: React.FC<EinheitComponentProps> = ({
           />
         </ImageListItem>
       </Box>
+      <Divider></Divider>
+      <Typography variant="h6" component="h1" gutterBottom>
+        Transport
+      </Typography>
+      <TransportComponent
+        transport={transport}
+        setTransport={(transport) => {
+          setTransport(transport);
+          handleSubmit({ ...einheit, transport: transport });
+        }}
+      ></TransportComponent>
+      <Divider></Divider>
+      <Typography variant="h6" component="h1" gutterBottom>
+        Bewegung
+      </Typography>
+      <BewegungComponent
+        bewegung={bewegung}
+        setBewegung={(bewegung) => {
+          setBewegung(bewegung);
+          handleSubmit({ ...einheit, bewegung: bewegung });
+        }}
+      ></BewegungComponent>
 
       <Divider></Divider>
       <Typography variant="h6" component="h1" gutterBottom>
@@ -108,14 +148,20 @@ const EinheitComponent: React.FC<EinheitComponentProps> = ({
         kosten={kosten}
         setKosten={(k) => {
           setKosten(k);
-          handleSubmit({...einheit, kosten: k});
+          handleSubmit({ ...einheit, kosten: k });
         }}
       ></KostenComponent>
       <Divider></Divider>
-      <Divider></Divider>
       <Typography variant="h6" component="h1" gutterBottom>
-        Für was der ganze Aufwand? Was bringt das?
+        Effekte
       </Typography>
+      <EffektListeComponent
+        effekte={effekte}
+        setEffekte={(effekte) => {
+          setEffekte(effekte);
+          handleSubmit({ ...einheit, effekte: effekte });
+        }}
+      />
     </Box>
   );
 };
