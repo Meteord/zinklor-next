@@ -11,10 +11,20 @@ import InfoReadOnlyComponent from "./info.readonly.component";
 import KostenListeReadOnlyComponent from "./costenliste.readonly.component";
 import EffektListeReadonlyComponent from "./effektliste.readonly.component";
 import { Einheit } from "../types/einheit";
+import Transport from "../types/transport";
+import Bewegung from "../types/bewergung";
 export interface EinheitReadonlyComponentProps {
   einheit: Einheit;
   useDefaultImage?: boolean;
 }
+
+const printBewegung = (bewegung: Bewegung): string => {
+  return `${bewegung.wege} / ${bewegung.cm} cm`;
+};
+
+const printTransport = (transport: Transport): string => {
+  return `${transport.einheiten}E / ${transport.rohstoffe} `;
+};
 
 const EinheitReadonlyComponent: React.FC<EinheitReadonlyComponentProps> = ({
   einheit,
@@ -53,9 +63,6 @@ const EinheitReadonlyComponent: React.FC<EinheitReadonlyComponentProps> = ({
             ))}
           </div>
           <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <Typography variant="h6">Kraft: {einheit.kraft}</Typography>
-            </Grid>
             {einheit.abkürzung && (
               <Grid item xs={12}>
                 <Typography variant="h6">
@@ -63,7 +70,19 @@ const EinheitReadonlyComponent: React.FC<EinheitReadonlyComponentProps> = ({
                 </Typography>
               </Grid>
             )}
-            <Grid item xs={12}></Grid>
+            <Grid item xs={12}>
+              <Typography variant="h6">Kraft: {einheit.kraft}</Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="h6">
+                Bewegung: {printBewegung(einheit.bewegung)}
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="h6">
+                Transport: {printTransport(einheit.transport)}
+              </Typography>
+            </Grid>
           </Grid>
         </Box>
         <ImageListItem>
