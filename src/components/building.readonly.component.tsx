@@ -11,6 +11,7 @@ import Building from "../types/building";
 import InfoReadOnlyComponent from "./info.readonly.component";
 import KostenListeReadOnlyComponent from "./costenliste.readonly.component";
 import ErweiterungReadonlyComponent from "./erweiterung.readonly.component";
+import EffektListeReadonlyComponent from "./effektliste.readonly.component";
 const building_jpg = require("../data/building/atlantis.jpg");
 
 export interface BuildingReadonlyComponentProps {
@@ -64,7 +65,7 @@ const BuildingReadonlyComponent: React.FC<BuildingReadonlyComponentProps> = ({
               </Grid>
             )}
             <Grid item xs={12}>
-              
+
             </Grid>
           </Grid>
         </Box>
@@ -88,6 +89,7 @@ const BuildingReadonlyComponent: React.FC<BuildingReadonlyComponentProps> = ({
           diffKosten,
         ]}
       ></KostenListeReadOnlyComponent>
+      <EffektListeReadonlyComponent effekte={building.bringt.effekte}></EffektListeReadonlyComponent>
     </Box>
   );
 };

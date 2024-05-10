@@ -2,6 +2,7 @@ import Info from "./Info";
 import Bewegung from "./bewergung";
 import Effekt from "./effekt";
 import Kosten from "./kosten";
+import Transport from "./transport";
 import { UnitTags } from "./tags";
 
 export class Einheit {
@@ -12,8 +13,9 @@ export class Einheit {
     tags: UnitTags[];
     effekte: Effekt[];
     info: Info;
+    transport: Transport
 
-    constructor(kosten: Kosten, info: Info, abkürzung: string, bewegung: Bewegung, kraft: number, tags: UnitTags[], effekte: Effekt[]) {
+    constructor(kosten: Kosten, info: Info, abkürzung: string, bewegung: Bewegung, kraft: number, tags: UnitTags[], effekte: Effekt[], transport: Transport) {
         this.kosten = kosten;
         this.abkürzung = abkürzung;
         this.bewegung = bewegung;
@@ -21,5 +23,6 @@ export class Einheit {
         this.tags = tags;
         this.effekte = effekte;
         this.info = info;
+        this.transport = transport;
     }
 }

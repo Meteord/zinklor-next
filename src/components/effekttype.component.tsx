@@ -13,9 +13,7 @@ const EffektTypeComponent: React.FC<EffektTypeComponentProps> = ({
   type,
   setEffektType,
 }) => {
-  const [et, setEt] = useState<EffektTypeObject>(
-    getEffektTypeObject(type)
-  );
+  const [et, setEt] = useState<EffektTypeObject>(getEffektTypeObject(type));
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let result = event.target.value as EffektType;
     setEt(getEffektTypeObject(result));
@@ -38,7 +36,7 @@ const EffektTypeComponent: React.FC<EffektTypeComponentProps> = ({
   );
 };
 
-interface EffektTypeObject {
+export interface EffektTypeObject {
   img: string;
   title: string;
   type: EffektType;
@@ -57,7 +55,7 @@ const effektTypes: EffektTypeObject[] = [
   },
 ];
 
-const getEffektTypeObject = (effektType: EffektType): EffektTypeObject => {
+export const getEffektTypeObject = (effektType: EffektType): EffektTypeObject => {
   let result = effektTypes.find(
     (form) => form.type === effektType
   ) as EffektTypeObject;

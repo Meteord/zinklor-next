@@ -10,6 +10,8 @@ import BuildingReadonlyComponent from "../components/building.readonly.component
 import { instanceToPlain } from "class-transformer";
 import { Einheit } from "../types/einheit";
 import EinheitComponent from "../components/einheit.component";
+import Transport from "../types/transport";
+import Bewegung from "../types/bewergung";
 
 const AdminPage: React.FC = () => {
   const [value, setValue] = React.useState("unit");
@@ -28,7 +30,7 @@ const AdminPage: React.FC = () => {
   );
 
   const [einheit, setEinheit] = React.useState<Einheit>(
-    new Einheit(new Kosten(0, 0, 0, 0), new Info("", ""), "", null, 0, [], [])
+    new Einheit(new Kosten(0, 0, 0, 0), new Info("", ""), "", new Bewegung(0,0), 0, [], [], new Transport(0,0))
   );
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {

@@ -11,6 +11,8 @@ import KostenComponent from "./costen.component";
 import Info from "../types/Info";
 import InfoComponent from "./info.component";
 import { Einheit } from "../types/einheit";
+import Transport from "../types/transport";
+import Bewegung from "../types/bewergung";
 const einheit_jpg = require("../data/unit/engel.jpg");
 
 export interface EinheitComponentProps {
@@ -28,7 +30,7 @@ const EinheitComponent: React.FC<EinheitComponentProps> = ({
   const [abkürzung, setAbkürzung] = useState<string | null>(einheit.abkürzung);
 
   const handleSubmit = (nextState?: Einheit) => {
-    const einheit = nextState? nextState: new Einheit(new Kosten(0, 0, 0, 0), new Info("", ""), "",null,  0, [], []);
+    const einheit = nextState? nextState: new Einheit(new Kosten(0, 0, 0, 0), new Info("", ""), "",new Bewegung(0,0),  0, [], [], new Transport(0,0));
     console.log("Submit: Einheit" + JSON.stringify(einheit));
     setEinheit(einheit);
   };
