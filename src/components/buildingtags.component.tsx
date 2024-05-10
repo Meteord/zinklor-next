@@ -18,7 +18,7 @@ const BuildingtagsComponent: React.FC<BuildingtagsComponentProps> = ({
   tags,
   setTags,
 }: BuildingtagsComponentProps) => {
-  const [selectedTags, setSelectedTags] = React.useState<BuildingTags[]>([]);
+  const [selectedTags, setSelectedTags] = React.useState<BuildingTags[]>(tags);
 
   const handleChange = (event: any, newValue: string[]) => {
     let filtered = newValue

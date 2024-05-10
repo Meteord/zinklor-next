@@ -39,7 +39,7 @@ const BuildingComponent: React.FC<BuildingComponentProps> = ({
   const [bringt, setBringt] = useState<Bringt>(building.bringt);
   const [kraft, setKraft] = useState<number>(building.kraft);
   const [abkürzung, setAbkürzung] = useState<string | null>(building.abkürzung);
-  const [tags, setTags] = React.useState<BuildingTags[]>([]);
+  const [tags, setTags] = React.useState<BuildingTags[]>(building.tags);
 
   const handleSubmit = (nextState?: Building) => {
     const building = nextState? nextState: new Building(
