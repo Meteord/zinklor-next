@@ -1,0 +1,1 @@
+{"kosten":{"holz":0,"gold":50,"stein":0,"magie":0},"abkürzung":"Z","bewegung":{"wege":3,"cm":2},"kraft":40,"tags":["zaubernd"],"effekte":[{"info":{"name":"Heilen","beschreibung":"kann einer E 50K pro R heilen"},"type":"Sonstiger","radius":5}],"info":{"name":"Zauberer","beschreibung":""},"transport":{"rohstoffe":10,"einheiten":0}}
