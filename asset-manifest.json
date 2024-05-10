@@ -1,31 +1,42 @@
 {
   "files": {
     "main.css": "/zinklor-next/static/css/main.e6c13ad2.css",
-    "main.js": "/zinklor-next/static/js/main.a99a895c.js",
+    "main.js": "/zinklor-next/static/js/main.17cb7840.js",
+    "static/media/Orks.jpg": "/zinklor-next/static/media/Orks.1958c6d6b72819c19c42.jpg",
     "static/media/kommunismus.jpg": "/zinklor-next/static/media/kommunismus.6a6a395c7a86fbe198c5.jpg",
     "static/media/schreckensherrschaft.jpg": "/zinklor-next/static/media/schreckensherrschaft.2b1f3ece75dadb24dbe2.jpg",
     "static/media/einsmitdernatur.jpg": "/zinklor-next/static/media/einsmitdernatur.579c629d97170d929a13.jpg",
     "static/media/oben.jpg": "/zinklor-next/static/media/oben.41b137083cd9fb50ca03.jpg",
     "static/media/demokratie.jpg": "/zinklor-next/static/media/demokratie.5b922e7165ecbbafd544.jpg",
+    "static/media/Drachenkönig.jpg": "/zinklor-next/static/media/Drachenkönig.4c5fad2b2593cffeb683.jpg",
     "static/media/faschismus.jpg": "/zinklor-next/static/media/faschismus.044a240d24eec5049bd3.jpg",
     "static/media/monarchie.jpg": "/zinklor-next/static/media/monarchie.cfe12dcd1fa5aa5ae239.jpg",
     "static/media/atlantis.jpg": "/zinklor-next/static/media/atlantis.96c7e766948504092a0c.jpg",
+    "static/media/Meereskönig.jpg": "/zinklor-next/static/media/Meereskönig.d973e3c1a4e7d1094507.jpg",
+    "static/media/Zwerge.jpg": "/zinklor-next/static/media/Zwerge.c860767ed8af08f07709.jpg",
+    "static/media/Meeresqueen.jpg": "/zinklor-next/static/media/Meeresqueen.1c304c232c9c1adc6f50.jpg",
     "static/media/wasser.jpg": "/zinklor-next/static/media/wasser.db7adf50b9d1f4be85fe.jpg",
     "static/media/eis.jpg": "/zinklor-next/static/media/eis.fa9d7c0d4d35febcb2c3.jpg",
     "static/media/magie.jpg": "/zinklor-next/static/media/magie.b0a6f1389fab9c469bc3.jpg",
+    "static/media/Palastwache des Zwergenkönigs.jpg": "/zinklor-next/static/media/Palastwache des Zwergenkönigs.55d6feba26c57940b4c6.jpg",
+    "static/media/Meeresjünger.jpg": "/zinklor-next/static/media/Meeresjünger.6d6e7fe1f284a6952401.jpg",
+    "static/media/Kobolde.jpg": "/zinklor-next/static/media/Kobolde.82befb6db3532609eee5.jpg",
     "static/media/feuer.jpg": "/zinklor-next/static/media/feuer.afc1d5ff15cd14c6b19d.jpg",
     "static/media/merkantilismus.jpg": "/zinklor-next/static/media/merkantilismus.9f4af02fb1d6b71597a7.jpg",
-    "static/media/könig.jpg": "/zinklor-next/static/media/könig.1994216e28f3d5fd8451.jpg",
+    "static/media/König.jpg": "/zinklor-next/static/media/König.1994216e28f3d5fd8451.jpg",
     "static/media/kalifat.jpg": "/zinklor-next/static/media/kalifat.4144cf44c196b25103da.jpg",
     "static/media/erde.jpg": "/zinklor-next/static/media/erde.9243906a7dd418a93e30.jpg",
-    "static/media/engel.jpg": "/zinklor-next/static/media/engel.15bc3804d16dbb0b6e67.jpg",
+    "static/media/Zauberer.jpg": "/zinklor-next/static/media/Zauberer.1341c070a0fe5c8e3fd3.jpg",
+    "static/media/Engel.jpg": "/zinklor-next/static/media/Engel.15bc3804d16dbb0b6e67.jpg",
+    "static/media/default.jpg": "/zinklor-next/static/media/default.335bcdda217a847eb1b2.jpg",
     "static/media/luft.jpg": "/zinklor-next/static/media/luft.8278c71679d5e0801ce3.jpg",
+    "static/media/schuss.jpg": "/zinklor-next/static/media/schuss.99bf192bb7cc24496ff9.jpg",
     "index.html": "/zinklor-next/index.html",
     "main.e6c13ad2.css.map": "/zinklor-next/static/css/main.e6c13ad2.css.map",
-    "main.a99a895c.js.map": "/zinklor-next/static/js/main.a99a895c.js.map"
+    "main.17cb7840.js.map": "/zinklor-next/static/js/main.17cb7840.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.a99a895c.js"
+    "static/js/main.17cb7840.js"
   ]
 }
