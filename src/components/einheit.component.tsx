@@ -17,6 +17,8 @@ import EffektListeComponent from "./effektliste.component";
 import Effekt from "../types/effekt";
 import TransportComponent from "./transport.component";
 import BewegungComponent from "./bewegung.component";
+import UnittagsComponent from "./unittags.component";
+import { UnitTags } from "../types/tags";
 const einheit_jpg = require("../data/unit/engel.jpg");
 
 export interface EinheitComponentProps {
@@ -35,6 +37,7 @@ const EinheitComponent: React.FC<EinheitComponentProps> = ({
   const [effekte, setEffekte] = useState<Effekt[]>(einheit.effekte);
   const [transport, setTransport] = useState<Transport>(einheit.transport);
   const [bewegung, setBewegung] = useState<Bewegung>(einheit.bewegung);
+  const [tags, setTags] = React.useState<UnitTags[]>(einheit.tags);
 
   const handleSubmit = (nextState?: Einheit) => {
     const einheit = nextState
@@ -139,6 +142,14 @@ const EinheitComponent: React.FC<EinheitComponentProps> = ({
           handleSubmit({ ...einheit, bewegung: bewegung });
         }}
       ></BewegungComponent>
+
+      <UnittagsComponent
+        tags={tags}
+        setTags={(tags) => {
+          setTags(tags);
+          handleSubmit({ ...einheit, tags: tags });
+        }}
+      ></UnittagsComponent>
 
       <Divider></Divider>
       <Typography variant="h6" component="h1" gutterBottom>

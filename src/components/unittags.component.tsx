@@ -2,28 +2,28 @@ import React from "react";
 import { Chip, Autocomplete, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import {
-  BuildingTags,
-  buildingTagsStrings,
-  parseBuildingTag,
+  UnitTags,
+  parseUnitTags,
+  unitTagsStrings,
 } from "../types/tags";
 
-const gebäudeTags = buildingTagsStrings;
+const unitTags = unitTagsStrings;
 
-export interface BuildingtagsComponentProps {
-  tags: BuildingTags[];
-  setTags: (tags: BuildingTags[]) => void;
+export interface UnittagsComponentProps {
+  tags: UnitTags[];
+  setTags: (tags: UnitTags[]) => void;
 }
 
-const BuildingtagsComponent: React.FC<BuildingtagsComponentProps> = ({
+const UnittagsComponent: React.FC<UnittagsComponentProps> = ({
   tags,
   setTags,
-}: BuildingtagsComponentProps) => {
-  const [selectedTags, setSelectedTags] = React.useState<BuildingTags[]>(tags);
+}: UnittagsComponentProps) => {
+  const [selectedTags, setSelectedTags] = React.useState<UnitTags[]>(tags);
 
   const handleChange = (event: any, newValue: string[]) => {
     let filtered = newValue
-      .filter((tag) => parseBuildingTag(tag) !== null)
-      .map((tag) => parseBuildingTag(tag));
+      .filter((tag) => parseUnitTags(tag) !== null)
+      .map((tag) => parseUnitTags(tag));
     console.log("Submitting Tags: " + JSON.stringify(filtered));
     setSelectedTags(filtered);
     setTags(filtered);
@@ -34,7 +34,7 @@ const BuildingtagsComponent: React.FC<BuildingtagsComponentProps> = ({
       <Autocomplete
         multiple
         id="tags-filled"
-        options={gebäudeTags}
+        options={unitTags}
         freeSolo
         onChange={handleChange}
         value={selectedTags}
@@ -46,7 +46,7 @@ const BuildingtagsComponent: React.FC<BuildingtagsComponentProps> = ({
         renderInput={(params) => (
           <TextField
             {...params}
-            label="Gebäude Tags"
+            label="Einheiten Tags"
             placeholder="Tags"
           />
         )}
@@ -55,4 +55,4 @@ const BuildingtagsComponent: React.FC<BuildingtagsComponentProps> = ({
   );
 };
 
-export default BuildingtagsComponent;
+export default UnittagsComponent;
