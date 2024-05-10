@@ -1,36 +1,40 @@
 import React, { useState } from "react";
-import { TextField } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import Kosten from "../types/kosten";
 import Bringt from "../types/bringt";
 import KostenComponent from "./costen.component";
+import Effekt from "../types/effekt";
+import EffektListeComponent from "./effektliste.component";
 
 export interface BringtComponentProps {
   bringt: Bringt;
   setBringt: (bringt: Bringt) => void;
 }
 
-const BringtComponent : React.FC<BringtComponentProps>= ({ bringt, setBringt }: BringtComponentProps) => {
-  const [beschreibung, setBeschreibung] = useState<string>(bringt.beschreibung);
+const BringtComponent: React.FC<BringtComponentProps> = ({
+  bringt,
+  setBringt,
+}: BringtComponentProps) => {
+  const [effekte, setEffekte] = useState<Effekt[]>(bringt.effekte);
   const [ertrag, setErtrag] = useState<Kosten>(bringt.ertrag);
-
-  const handleSubmit = () => {
-    let br = new Bringt(beschreibung, ertrag);
-    console.log("Submit: Bringt" + JSON.stringify(br));
-    setBringt(br);
-  };
 
   return (
     <div>
-      <KostenComponent kosten={ertrag} setKosten={(kosten) => {setErtrag(kosten); handleSubmit()}} />
-      <TextField
-        label="Bringt folgende Dinge:"
-        value={beschreibung}
-        fullWidth
-        multiline
-        minRows={6}
-        onChange={(e) => {
-          setBeschreibung(e.target.value);
-          handleSubmit();
+      <KostenComponent
+        kosten={ertrag}
+        setKosten={(kosten) => {
+          setErtrag(kosten);
+          setBringt(new Bringt(effekte, kosten));
+        }}
+      />
+      <Typography variant="h6" component="h1" gutterBottom>
+        Effekte
+      </Typography>
+      <EffektListeComponent
+        effekte={effekte}
+        setEffekte={(effekte) => {
+          setEffekte(effekte);
+          setBringt(new Bringt(effekte, ertrag));
         }}
       />
     </div>

@@ -64,9 +64,7 @@ const BuildingReadonlyComponent: React.FC<BuildingReadonlyComponentProps> = ({
               </Grid>
             )}
             <Grid item xs={12}>
-              <Typography variant="h6">
-                Effekt: {building.bringt.beschreibung}
-              </Typography>
+              
             </Grid>
           </Grid>
         </Box>

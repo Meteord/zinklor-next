@@ -1,11 +1,12 @@
+import Effekt from "./effekt";
 import Kosten from "./kosten";
 
 export default class Bringt {
-    beschreibung: string;
+    effekte: Effekt[];
     ertrag: Kosten;
 
-    constructor(beschreibung: string, ertrag: Kosten) {
-        this.beschreibung = beschreibung;
+    constructor(effekte: Effekt[], ertrag: Kosten) {
+        this.effekte = effekte;
         this.ertrag = ertrag;
     }
 }

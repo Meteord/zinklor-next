@@ -18,7 +18,7 @@ const AdminPage: React.FC = () => {
     new Building(
       new Kosten(0, 0, 0, 0),
       ErweiterungType.Eis,
-      new Bringt("", new Kosten(0, 0, 0, 0)),
+      new Bringt([], new Kosten(0, 0, 0, 0)),
       0,
       new Info("", ""),
       [],
