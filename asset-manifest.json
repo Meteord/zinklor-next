@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/zinklor-next/static/css/main.e6c13ad2.css",
-    "main.js": "/zinklor-next/static/js/main.17cb7840.js",
+    "main.js": "/zinklor-next/static/js/main.d655a7cf.js",
     "static/media/Orks.jpg": "/zinklor-next/static/media/Orks.1958c6d6b72819c19c42.jpg",
     "static/media/kommunismus.jpg": "/zinklor-next/static/media/kommunismus.6a6a395c7a86fbe198c5.jpg",
     "static/media/schreckensherrschaft.jpg": "/zinklor-next/static/media/schreckensherrschaft.2b1f3ece75dadb24dbe2.jpg",
@@ -33,10 +33,10 @@
     "static/media/schuss.jpg": "/zinklor-next/static/media/schuss.99bf192bb7cc24496ff9.jpg",
     "index.html": "/zinklor-next/index.html",
     "main.e6c13ad2.css.map": "/zinklor-next/static/css/main.e6c13ad2.css.map",
-    "main.17cb7840.js.map": "/zinklor-next/static/js/main.17cb7840.js.map"
+    "main.d655a7cf.js.map": "/zinklor-next/static/js/main.d655a7cf.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.17cb7840.js"
+    "static/js/main.d655a7cf.js"
   ]
 }
