@@ -17,7 +17,8 @@ import EinheitReadonlyComponent from "../components/einheit.readonly.component";
 enum AdminPageTabs {
   Unit = "unit",
   Building = "building",
-  Else = "else",
+  Erforschung = "erforschung",
+  Zauber = "zauber",
 }
 
 const AdminPage: React.FC = () => {
@@ -55,7 +56,8 @@ const AdminPage: React.FC = () => {
   };
 
   const exportData = () => {
-    let exported, name = null;
+    let exported,
+      name = null;
     if (value === AdminPageTabs.Unit) {
       exported = JSON.stringify(instanceToPlain(einheit));
       name = einheit.info.name;
@@ -96,7 +98,8 @@ const AdminPage: React.FC = () => {
           >
             <Tab value={AdminPageTabs.Unit} label="Einheit" />
             <Tab value={AdminPageTabs.Building} label="Gebäude" />
-            <Tab value={AdminPageTabs.Else} label="Sonstiges" />
+            <Tab value={AdminPageTabs.Erforschung} label="Erforschung" />
+            <Tab value={AdminPageTabs.Zauber} label="Zauber" />
           </Tabs>
           {value === AdminPageTabs.Building ? (
             <div>
@@ -129,7 +132,7 @@ const AdminPage: React.FC = () => {
                 <div></div>
               )}
             </div>
-          ) : (
+          ) : value === AdminPageTabs.Unit ? (
             <div>
               {!unitPreview ? (
                 <EinheitComponent
@@ -162,6 +165,8 @@ const AdminPage: React.FC = () => {
                 <div></div>
               )}
             </div>
+          ) : (
+            value === AdminPageTabs.Erforschung ? <div>Erforschungen</div> : <div>Zauberhaftes</div>
           )}
         </CardContent>
       </Card>

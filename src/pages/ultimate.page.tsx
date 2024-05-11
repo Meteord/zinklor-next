@@ -32,7 +32,7 @@ const UltimatePage: React.FC = () => {
       alignItems="center"
       gap={4}
       p={2}
-      sx={{ width: "100%" }}
+      sx={{ width: "90%" }}
     >
       <Card>
         <CardContent>

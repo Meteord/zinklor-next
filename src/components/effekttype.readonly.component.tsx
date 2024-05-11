@@ -10,7 +10,7 @@ const EffektTypeReadonlyComponent: React.FC<
     EffektTypeReadonlyComponentProps
 > = ({ type }) => {
     const [et, setEt] = useState<EffektTypeObject>(getEffektTypeObject(type));
-    return <Chip avatar={<Avatar src={et.img} />} label={et.title} />;
+    return <Chip size="small" avatar={<Avatar src={et.img} />} label={et.title} />;
 };
 
 export default EffektTypeReadonlyComponent;

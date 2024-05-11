@@ -15,10 +15,11 @@ const EffektListeReadonlyComponent: React.FC<
       display="flex"
       flexDirection="row"
       alignItems="space-between"
+      flexWrap={"wrap"}
       gap={2}
       my={3}
       mx={3}
-      sx={{ width: "100%" }}
+      sx={{ width: "90%" }}
     >
       {effekte.map((effekt, index) => (
         <div>

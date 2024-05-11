@@ -1,16 +1,13 @@
 import React from "react";
 import { Einheit } from "../types/einheit";
 import {
-  TableContainer,
-  Paper,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
   Collapse,
-  Box,
   IconButton,
+  Card,
+  CardActions,
+  CardContent,
+  Typography,
+  Grid,
 } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
@@ -45,15 +42,15 @@ const printTransport = (transport: Transport): string => {
   return `${transport.einheiten}E / ${transport.rohstoffe} `;
 };
 const printEffekte = (effekte: Effekt[]): string => {
-    return effekte.map((effekt) => effekt.info.name).join(", ");
-}
-const Row: React.FC<Rowprop> = ({ einheit }: Rowprop) => {
+  return effekte.map((effekt) => effekt.info.name).join(", ");
+};
+const EinheitenCard: React.FC<Rowprop> = ({ einheit }: Rowprop) => {
   const [open, setOpen] = React.useState(false);
 
   return (
     <React.Fragment>
-      <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-        <TableCell>
+      <Card>
+        <CardContent>
           <IconButton
             aria-label="expand row"
             size="small"
@@ -61,30 +58,29 @@ const Row: React.FC<Rowprop> = ({ einheit }: Rowprop) => {
           >
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
-        </TableCell>
 
-        <TableCell component="th">{einheit.info.name}</TableCell>
-        <TableCell align="right">{einheit.abkürzung}</TableCell>
-        <TableCell align="right" scope="row">
-          {printKosten(einheit.kosten)}
-        </TableCell>
-        <TableCell align="right">{printBewegung(einheit.bewegung)}</TableCell>
-        <TableCell align="right">{einheit.kraft}</TableCell>
-        <TableCell align="right">{einheit.tags.join(", ")}</TableCell>
-        <TableCell align="right">{printEffekte(einheit.effekte)}</TableCell>
-        <TableCell align="right">{printTransport(einheit.transport)}</TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+          <Typography variant="h6" component="div">
+            {einheit.info.name}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Abkürzung: {einheit.abkürzung}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Kosten: {printKosten(einheit.kosten)}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Kraft: {einheit.kraft}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Tags: {einheit.tags.join(", ")}
+          </Typography>
+        </CardContent>
+        <CardActions>
           <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box sx={{ margin: 1 }}>
-              <EinheitReadonlyComponent
-                einheit={einheit}
-              ></EinheitReadonlyComponent>
-            </Box>
+            <EinheitReadonlyComponent einheit={einheit} />
           </Collapse>
-        </TableCell>
-      </TableRow>
+        </CardActions>
+      </Card>
     </React.Fragment>
   );
 };
@@ -95,30 +91,13 @@ const EinheitTable: React.FC<EinheitTableProps> = ({
   einheiten,
 }: EinheitTableProps) => {
   return (
-    <div>
-      <TableContainer component={Paper}>
-        <Table stickyHeader aria-label="ultimateTable">
-          <TableHead>
-            <TableRow>
-              <TableCell />
-              <TableCell align="right">Name</TableCell>
-              <TableCell align="right">Abkürzung</TableCell>
-              <TableCell align="right">Kosten</TableCell>
-              <TableCell align="right">Bewegung</TableCell>
-              <TableCell align="right">Kraft</TableCell>
-              <TableCell align="right">Tags</TableCell>
-              <TableCell align="right">Effekte</TableCell>
-              <TableCell align="right">Transport</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {einheiten.map((einheit) => (
-              <Row key={einheit.info.name} einheit={einheit} />
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
+    <Grid container spacing={2}>
+      {einheiten.map((einheit) => (
+        <Grid item xs={12} sm={6} md={4} key={einheit.info.name}>
+          <EinheitenCard einheit={einheit} key={einheit.info.name}/>
+        </Grid>
+      ))}
+    </Grid>
   );
 };
 

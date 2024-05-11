@@ -39,7 +39,7 @@ const EinheitReadonlyComponent: React.FC<EinheitReadonlyComponentProps> = ({
       flexDirection="column"
       alignItems="start"
       gap={1}
-      sx={{ width: "100%" }}
+      sx={{ width: "90%" }}
     >
       <Box
         display="flex"
