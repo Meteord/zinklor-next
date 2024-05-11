@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Typography,
   Stepper,
@@ -18,6 +18,10 @@ import InfoComponent from "../components/info.component";
 import StaatsformComponent from "../components/staatsform.component";
 import SpellComponent from "../components/spell.component";
 import Staatsform, { Staatsformtype } from "../types/staatsform";
+import EinheitSelectComponent from "../components/einheit.select.component";
+import { fetchUnits } from "../data/unit/fetchUnits";
+import { Einheit } from "../types/einheit";
+import { UnitTags } from "../types/tags";
 const koenigjpg = require("../data/unit/König.jpg");
 
 enum GamePageState {
@@ -44,6 +48,24 @@ const GamePage: React.FC = () => {
     )
   );
   const steps = ["Wer bist du, Alter?", "Ganz normale Spieleinstellungen"];
+  const [kings, setKings] = useState<Einheit[]>([]);
+  useEffect(() => {
+    // Fetch data here
+    const fetchData = async () => {
+      try {
+        let einheiten = fetchUnits();
+        let könige = einheiten.filter((einheit) => {
+          return einheit.tags.includes(UnitTags.Königend);
+        });
+        console.log("Könige: " + JSON.stringify(könige));
+        setKings(könige);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleNext = () => {
     if (activeStep === steps.length - 1) {
@@ -76,7 +98,7 @@ const GamePage: React.FC = () => {
               flexDirection="column"
               gap={4}
               alignItems="center"
-              sx={{ width: "100%" }}
+              sx={{ width: "90%" }}
             >
               Kontrolle über dein Leben verloren, kein existierendes Spiel
               gefunden!
@@ -97,61 +119,56 @@ const GamePage: React.FC = () => {
                 </Step>
               </Stepper>
               {activeStep === 0 && (
-                    <Box
-                      my={4}
-                      display="flex"
-                      flexDirection="column"
-                      alignItems="start"
-                      sx={{ width: "100%" }}
-                    >
-                      <Typography variant="h6" component="h2" gutterBottom>
-                        Persönliche Informationen
-                      </Typography>
-                      <InfoComponent
-                        info={state.info}
-                        labelBeschreibung="Erzähl was über dich! Kreditkarteninfos, Passwörter, alles was du hast!"
-                        labelName="Wie heißt du?"
-                        setInfo={(info) =>
-                          setState({ ...state, ...{ info: info } })
-                        }
-                      ></InfoComponent>
+                <Box
+                  my={4}
+                  display="flex"
+                  flexDirection="column"
+                  alignItems="start"
+                  gap={1}
+                  sx={{ width: "90%" }}
+                >
+                  <Typography variant="h6" component="h2" gutterBottom>
+                    Persönliche Informationen
+                  </Typography>
+                  <InfoComponent
+                    info={state.info}
+                    labelBeschreibung="Erzähl was über dich! Kreditkarteninfos, Passwörter, alles was du hast!"
+                    labelName="Wie heißt du?"
+                    setInfo={(info) =>
+                      setState({ ...state, ...{ info: info } })
+                    }
+                  ></InfoComponent>
+                  <EinheitSelectComponent
+                    einheiten={kings}
+                    einheit={state.könig}
+                    setEinheit={(koenig) =>
+                      setState({ ...state, ...{ könig: koenig } })
+                    }
+                  ></EinheitSelectComponent>
 
-                      <Divider></Divider>
+                  <Divider></Divider>
 
-                      <Typography variant="h6" component="h2" gutterBottom>
-                        König
-                      </Typography>
-                      <ImageListItem>
-                        <img
-                          srcSet={`${koenigjpg}?w=250&h=250&fit=crop&auto=format&dpr=2 2x`}
-                          src={`${koenigjpg}?w=250&h=250&fit=crop&auto=format`}
-                          alt={"König"}
-                          loading="lazy"
-                        />
-                      </ImageListItem>
-                      <Divider></Divider>
-                      <Typography variant="h6" component="h2" gutterBottom>
-                        Staatsform
-                      </Typography>
-                      <StaatsformComponent
-                        staatsform={state.staatsform}
-                        setStaatsform={(st) =>
-                          setState({ ...state, ...{ staatsform: st } })
-                        }
-                      ></StaatsformComponent>
+                  <Divider></Divider>
+                  <Typography variant="h6" component="h2" gutterBottom>
+                    Staatsform
+                  </Typography>
+                  <StaatsformComponent
+                    staatsform={state.staatsform}
+                    setStaatsform={(st) =>
+                      setState({ ...state, ...{ staatsform: st } })
+                    }
+                  ></StaatsformComponent>
 
-                      <Divider></Divider>
-                      <Typography variant="h6" component="h2" gutterBottom>
-                        Zauber
-                      </Typography>
-                      <SpellComponent
-                        spell={state.spell}
-                        setSpell={(sp) =>
-                          setState({ ...state, ...{ spell: sp } })
-                        }
-                      ></SpellComponent>
-                    </Box>
-                  )}
+                  <Divider></Divider>
+                  <Typography variant="h6" component="h2" gutterBottom>
+                    Zauber
+                  </Typography>
+                  <SpellComponent
+                    spell={state.spell}
+                    setSpell={(sp) => setState({ ...state, ...{ spell: sp } })}
+                  ></SpellComponent>
+                </Box>
+              )}
               <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
                 <Button color="inherit" onClick={handleBack} sx={{ mr: 1 }}>
                   Zurück Diggi
