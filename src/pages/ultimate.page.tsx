@@ -40,7 +40,7 @@ const UltimatePage: React.FC = () => {
             Ultimate Ultimate Next Level Einheitenregister
           </Typography>
           <TextField
-            label="Search"
+            label="Suche Einheit"
             variant="outlined"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}

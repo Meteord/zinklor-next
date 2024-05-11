@@ -29,7 +29,7 @@ export interface EinheitComponentProps {
 const EinheitComponent: React.FC<EinheitComponentProps> = ({
   einheit,
   setEinheit,
-  useDefaultImage
+  useDefaultImage,
 }: EinheitComponentProps) => {
   const [kosten, setKosten] = useState<Kosten>(einheit.kosten);
   const [info, setInfo] = useState<Info>(einheit.info);
@@ -67,7 +67,7 @@ const EinheitComponent: React.FC<EinheitComponentProps> = ({
       flexDirection="column"
       alignItems="start"
       gap={1}
-      sx={{ width: "100%" }}
+      sx={{ width: "90%" }}
     >
       <Typography variant="h6" component="h1" gutterBottom>
         Allgemeine Infos
@@ -77,14 +77,15 @@ const EinheitComponent: React.FC<EinheitComponentProps> = ({
         flexDirection="row"
         alignItems="space-between"
         gap={1}
-        sx={{ width: "100%" }}
+        flexWrap={"wrap"}
+        sx={{ width: "90%" }}
       >
         <Box
           display="flex"
           flexDirection="column"
           alignItems="space-between"
           gap={1}
-          sx={{ width: "100%" }}
+          sx={{ width: "50%" }}
         >
           <InfoComponent
             info={info}
@@ -116,14 +117,16 @@ const EinheitComponent: React.FC<EinheitComponentProps> = ({
             }}
           />
         </Box>
-        <ImageListItem>
-          <img
-            srcSet={`${einheit_jpg}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-            src={`${einheit_jpg}?w=164&h=164&fit=crop&auto=format`}
-            alt="default_building"
-            loading="lazy"
-          />
-        </ImageListItem>
+        <Box sx={{ width: "45%" }}>
+          <ImageListItem>
+            <img
+              srcSet={`${einheit_jpg}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+              src={`${einheit_jpg}?w=164&h=164&fit=crop&auto=format`}
+              alt="default_building"
+              loading="lazy"
+            />
+          </ImageListItem>
+        </Box>
       </Box>
       <Divider></Divider>
       <Typography variant="h6" component="h1" gutterBottom>

@@ -28,7 +28,8 @@ const BuildingReadonlyComponent: React.FC<BuildingReadonlyComponentProps> = ({
       flexDirection="column"
       alignItems="start"
       gap={1}
-      sx={{ width: "100%" }}
+      flexWrap={"wrap"}
+      sx={{ width: "90%" }}
     >
       <Box
         display="flex"
@@ -42,7 +43,7 @@ const BuildingReadonlyComponent: React.FC<BuildingReadonlyComponentProps> = ({
           flexDirection="column"
           alignItems="space-between"
           gap={1}
-          sx={{ width: "100%" }}
+          sx={{ width: "45%" }}
         >
           <InfoReadOnlyComponent info={building.info}></InfoReadOnlyComponent>
 
