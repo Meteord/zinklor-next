@@ -8,7 +8,8 @@ export enum Staatsformtype {
     EinsMitDerNatur = "Eins Mit der Natur",
     Faschismus = "Faschismus",
     Kommunismus = "Kommunismus",
-    Merkantilismus = "Merkantilismus"
+    Merkantilismus = "Merkantilismus",
+    Kolonialherrschaft = "Kolonialherrschaft",
 }
 
 class Staatsform{
