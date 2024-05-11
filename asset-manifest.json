@@ -1,7 +1,8 @@
 {
   "files": {
     "main.css": "/zinklor-next/static/css/main.e6c13ad2.css",
-    "main.js": "/zinklor-next/static/js/main.68e4a4a1.js",
+    "main.js": "/zinklor-next/static/js/main.176dc8f1.js",
+    "static/media/Heldenkrieger.jpg": "/zinklor-next/static/media/Heldenkrieger.58b06d3b37d9129ce2c9.jpg",
     "static/media/Orks.jpg": "/zinklor-next/static/media/Orks.1958c6d6b72819c19c42.jpg",
     "static/media/kommunismus.jpg": "/zinklor-next/static/media/kommunismus.6a6a395c7a86fbe198c5.jpg",
     "static/media/schreckensherrschaft.jpg": "/zinklor-next/static/media/schreckensherrschaft.2b1f3ece75dadb24dbe2.jpg",
@@ -24,19 +25,23 @@
     "static/media/feuer.jpg": "/zinklor-next/static/media/feuer.afc1d5ff15cd14c6b19d.jpg",
     "static/media/merkantilismus.jpg": "/zinklor-next/static/media/merkantilismus.9f4af02fb1d6b71597a7.jpg",
     "static/media/König.jpg": "/zinklor-next/static/media/König.1994216e28f3d5fd8451.jpg",
+    "static/media/Trolle.jpg": "/zinklor-next/static/media/Trolle.672b0634cc18aef8a3e5.jpg",
     "static/media/kalifat.jpg": "/zinklor-next/static/media/kalifat.4144cf44c196b25103da.jpg",
-    "static/media/erde.jpg": "/zinklor-next/static/media/erde.9243906a7dd418a93e30.jpg",
     "static/media/Zauberer.jpg": "/zinklor-next/static/media/Zauberer.1341c070a0fe5c8e3fd3.jpg",
+    "static/media/Drachen.jpg": "/zinklor-next/static/media/Drachen.81833fd974ddc8098c24.jpg",
+    "static/media/Fledermäuse.jpg": "/zinklor-next/static/media/Fledermäuse.0597e1e2e2b11313e21e.jpg",
+    "static/media/Eisbären.jpg": "/zinklor-next/static/media/Eisbären.71e094e7d11bb601a44c.jpg",
+    "static/media/erde.jpg": "/zinklor-next/static/media/erde.c6b4ae49c08ed11cc4eb.jpg",
     "static/media/Engel.jpg": "/zinklor-next/static/media/Engel.15bc3804d16dbb0b6e67.jpg",
     "static/media/default.jpg": "/zinklor-next/static/media/default.335bcdda217a847eb1b2.jpg",
     "static/media/luft.jpg": "/zinklor-next/static/media/luft.8278c71679d5e0801ce3.jpg",
     "static/media/schuss.jpg": "/zinklor-next/static/media/schuss.99bf192bb7cc24496ff9.jpg",
     "index.html": "/zinklor-next/index.html",
     "main.e6c13ad2.css.map": "/zinklor-next/static/css/main.e6c13ad2.css.map",
-    "main.68e4a4a1.js.map": "/zinklor-next/static/js/main.68e4a4a1.js.map"
+    "main.176dc8f1.js.map": "/zinklor-next/static/js/main.176dc8f1.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.68e4a4a1.js"
+    "static/js/main.176dc8f1.js"
   ]
 }
