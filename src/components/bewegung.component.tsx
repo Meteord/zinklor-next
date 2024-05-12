@@ -9,15 +9,13 @@ export interface BewegungComponentProps {
 
 const BewegungComponent: React.FC<BewegungComponentProps> = ({
   bewegung,
-  setBewegung
+  setBewegung,
 }) => {
   const handleWegeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setBewegung(new Bewegung(parseInt(event.target.value), bewegung.cm));
   };
 
-  const handleCmChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleCmChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setBewegung(new Bewegung(bewegung.wege, parseInt(event.target.value)));
   };
 
@@ -27,13 +25,13 @@ const BewegungComponent: React.FC<BewegungComponentProps> = ({
         label="Wege"
         value={bewegung.wege}
         onChange={handleWegeChange}
-        fullWidth
+        size="small"
       />
       <TextField
         label="cm"
         value={bewegung.cm}
         onChange={handleCmChange}
-        fullWidth
+        size="small"
       />
     </div>
   );

@@ -97,7 +97,7 @@ const BuildingComponent: React.FC<BuildingComponentProps> = ({
           <TextField
             label="Kraft"
             value={kraft}
-            fullWidth
+            size="small"
             onChange={(e) => {
               let kraft = parseInt(e.target.value);
               setKraft(kraft);
@@ -108,7 +108,7 @@ const BuildingComponent: React.FC<BuildingComponentProps> = ({
           <TextField
             label="Abkürzung"
             value={abkürzung}
-            fullWidth
+            size="small"
             onChange={(e) => {
               setAbkürzung(e.target.value);
               handleSubmit({ ...building, abkürzung: e.target.value });

@@ -23,10 +23,10 @@ export interface Rowprop {
 
 const printKosten = (kosten: Kosten): string => {
   let transformed = [
-    { name: `H: ${kosten.holz}`, value: kosten.holz },
-    { name: `G: ${kosten.gold}`, value: kosten.gold },
-    { name: `S: ${kosten.stein}`, value: kosten.stein },
-    { name: `M: ${kosten.magie}`, value: kosten.magie },
+    { name: `${kosten.gold}G`, value: kosten.gold },
+    { name: `${kosten.holz}H`, value: kosten.holz },
+    { name: `${kosten.stein}S`, value: kosten.stein },
+    { name: `${kosten.magie}M`, value: kosten.magie },
   ];
   return transformed
     .filter((x) => x.value !== 0)
@@ -63,13 +63,13 @@ const EinheitenCard: React.FC<Rowprop> = ({ einheit }: Rowprop) => {
             {einheit.info.name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Abkürzung: {einheit.abkürzung}
+            {einheit.abkürzung}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Kosten: {printKosten(einheit.kosten)}
+            {printKosten(einheit.kosten)}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Kraft: {einheit.kraft}
+            {einheit.kraft}K
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Tags: {einheit.tags.join(", ")}

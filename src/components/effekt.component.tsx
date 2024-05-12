@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TextField } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import Info from "../types/Info";
 import Effekt, { EffektType } from "../types/effekt";
 import InfoComponent from "./info.component";
@@ -19,30 +19,32 @@ const EffektComponent: React.FC<EffektComponentProps> = ({
   const [info, setInfo] = useState<Info>(effekt.info);
   return (
     <div>
-      <EffektTypeComponent
-        type={type}
-        setEffektType={(type) => {
-          setType(type);
-          setEffekt(new Effekt(info, type, radius));
-        }}
-      ></EffektTypeComponent>
-      <InfoComponent
-        info={effekt.info}
-        setInfo={(info: Info) => {
-          setInfo(info);
-          setEffekt(new Effekt(info, type, radius));
-        }}
-      />
-      <TextField
-        label="Radius"
-        value={radius}
-        fullWidth
-        onChange={(e) => {
-          let r = parseInt(e.target.value);
-          setRadius(r);
-          setEffekt(new Effekt(info, type, r));
-        }}
-      />
+      <Box display="flex" flexDirection="column">
+        <EffektTypeComponent
+          type={type}
+          setEffektType={(type) => {
+            setType(type);
+            setEffekt(new Effekt(info, type, radius));
+          }}
+        ></EffektTypeComponent>
+        <InfoComponent
+          info={effekt.info}
+          setInfo={(info: Info) => {
+            setInfo(info);
+            setEffekt(new Effekt(info, type, radius));
+          }}
+        />
+        <TextField
+          label="Radius"
+          value={radius}
+          size="small"
+          onChange={(e) => {
+            let r = parseInt(e.target.value);
+            setRadius(r);
+            setEffekt(new Effekt(info, type, r));
+          }}
+        />
+      </Box>
     </div>
   );
 };

@@ -22,7 +22,7 @@ import EinheitSelectComponent from "../components/einheit.select.component";
 import { fetchUnits } from "../data/unit/fetchUnits";
 import { Einheit } from "../types/einheit";
 import { UnitTags } from "../types/tags";
-const koenigjpg = require("../data/unit/König.jpg");
+import InfoReadOnlyComponent from "../components/info.readonly.component";
 
 enum GamePageState {
   UNSTARTED = "UNSTARTED",
@@ -184,10 +184,52 @@ const GamePage: React.FC = () => {
             <Box
               display="flex"
               flexDirection="column"
-              alignItems="center"
-              sx={{ width: "100%" }}
+              alignItems="start"
+              gap={1}
+              flexWrap={"wrap"}
+              sx={{ width: "90%" }}
             >
-              Im Spiel angekommen. Viel Spaß!
+              <Box
+                display="flex"
+                flexDirection="row"
+                alignItems="space-between"
+                gap={1}
+                sx={{ width: "100%" }}
+              >
+                <Box
+                  display="flex"
+                  flexDirection="column"
+                  alignItems="space-between"
+                  gap={1}
+                  sx={{ width: "90%" }}
+                >
+                  <InfoReadOnlyComponent
+                    info={state.info}
+                  ></InfoReadOnlyComponent>
+                </Box>
+                <Box
+                  display="flex"
+                  flexDirection="column"
+                  alignItems="space-between"
+                  gap={1}
+                  sx={{ width: "10%" }}
+                >
+                  {state.könig && (
+                    <ImageListItem>
+                      <img
+                        srcSet={`${require("../data/unit/" +
+                          state.könig.info.name +
+                          ".jpg")}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                        src={`${require("../data/unit/" +
+                          state.könig.info.name +
+                          ".jpg")}?w=164&h=164&fit=crop&auto=format`}
+                        alt="default_building"
+                        loading="lazy"
+                      />
+                    </ImageListItem>
+                  )}
+                </Box>
+              </Box>
             </Box>
           )}
         </CardContent>

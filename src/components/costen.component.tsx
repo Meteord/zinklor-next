@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormControl, FormHelperText, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import Kosten from "../types/kosten";
 
 export interface KostenComponentProps {
@@ -24,17 +24,9 @@ const KostenComponent: React.FC<KostenComponentProps> = ({
   return (
     <div>
       <TextField
-        label="Holz"
-        value={holz}
-        onChange={(e) => {
-          let h = parseInt(e.target.value);
-          setHolz(h);
-          handleSubmit(new Kosten(h, gold, stein, magie));
-        }}
-      />
-      <TextField
         label="Gold"
         value={gold}
+        size="small"
         onChange={(e) => {
           let g = parseInt(e.target.value);
           setGold(g);
@@ -42,8 +34,19 @@ const KostenComponent: React.FC<KostenComponentProps> = ({
         }}
       />
       <TextField
+        label="Holz"
+        value={holz}
+        size="small"
+        onChange={(e) => {
+          let h = parseInt(e.target.value);
+          setHolz(h);
+          handleSubmit(new Kosten(h, gold, stein, magie));
+        }}
+      />
+      <TextField
         label="Stein"
         value={stein}
+        size="small"
         onChange={(e) => {
           let s = parseInt(e.target.value);
           setStein(s);
@@ -53,6 +56,7 @@ const KostenComponent: React.FC<KostenComponentProps> = ({
       <TextField
         label="Magie"
         value={magie}
+        size="small"
         onChange={(e) => {
           let m = parseInt(e.target.value);
           setMagie(m);

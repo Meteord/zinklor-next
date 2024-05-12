@@ -9,16 +9,22 @@ export interface TransportComponentProps {
 
 const TransportComponent: React.FC<TransportComponentProps> = ({
   transport,
-  setTransport
+  setTransport,
 }) => {
-  const handleRohstoffeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTransport(new Transport(parseInt(event.target.value), transport.einheiten));
+  const handleRohstoffeChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setTransport(
+      new Transport(parseInt(event.target.value), transport.einheiten)
+    );
   };
 
   const handleEinheitenChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setTransport(new Transport(transport.rohstoffe, parseInt(event.target.value)));
+    setTransport(
+      new Transport(transport.rohstoffe, parseInt(event.target.value))
+    );
   };
 
   return (
@@ -27,17 +33,16 @@ const TransportComponent: React.FC<TransportComponentProps> = ({
         label="Rohstoffe"
         value={transport.rohstoffe}
         onChange={handleRohstoffeChange}
-        fullWidth
+        size="small"
       />
       <TextField
         label="Einheiten"
         value={transport.einheiten}
         onChange={handleEinheitenChange}
-        fullWidth
+        size="small"
       />
     </div>
   );
 };
 
 export default TransportComponent;
-

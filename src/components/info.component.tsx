@@ -33,15 +33,15 @@ const InfoComponent: React.FC<InfoComponentProps> = ({
         label={labelName}
         value={info.name}
         onChange={handleTitleChange}
-        fullWidth
+        size="small"
       />
       <TextField
         label={labelBeschreibung}
         value={info.beschreibung}
         onChange={handleDescriptionChange}
-        fullWidth
+        size="small"
         multiline
-        minRows={6}
+        minRows={5}
       />
     </div>
   );

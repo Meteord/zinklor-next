@@ -51,8 +51,10 @@ const BuildingReadonlyComponent: React.FC<BuildingReadonlyComponentProps> = ({
             {building.tags.map((option: string, index: number) => (
               <Chip variant="outlined" label={option} key={index} />
             ))}
-            <ErweiterungReadonlyComponent onlyImage erweiterung={building.erweiterung}></ErweiterungReadonlyComponent>
-          
+            <ErweiterungReadonlyComponent
+              onlyImage
+              erweiterung={building.erweiterung}
+            ></ErweiterungReadonlyComponent>
           </div>
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -65,19 +67,25 @@ const BuildingReadonlyComponent: React.FC<BuildingReadonlyComponentProps> = ({
                 </Typography>
               </Grid>
             )}
-            <Grid item xs={12}>
-
-            </Grid>
+            <Grid item xs={12}></Grid>
           </Grid>
         </Box>
-        <ImageListItem>
-          <img
-            srcSet={`${building_jpg}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-            src={`${building_jpg}?w=164&h=164&fit=crop&auto=format`}
-            alt="default_building"
-            loading="lazy"
-          />
-        </ImageListItem>
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="space-between"
+          gap={1}
+          sx={{ width: "20%" }}
+        >
+          <ImageListItem>
+            <img
+              srcSet={`${building_jpg}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+              src={`${building_jpg}?w=164&h=164&fit=crop&auto=format`}
+              alt="default_building"
+              loading="lazy"
+            />
+          </ImageListItem>
+        </Box>
       </Box>
 
       <Divider></Divider>
@@ -90,7 +98,9 @@ const BuildingReadonlyComponent: React.FC<BuildingReadonlyComponentProps> = ({
           diffKosten,
         ]}
       ></KostenListeReadOnlyComponent>
-      <EffektListeReadonlyComponent effekte={building.bringt.effekte}></EffektListeReadonlyComponent>
+      <EffektListeReadonlyComponent
+        effekte={building.bringt.effekte}
+      ></EffektListeReadonlyComponent>
     </Box>
   );
 };

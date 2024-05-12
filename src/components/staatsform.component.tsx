@@ -3,13 +3,13 @@ import {
   Select,
   MenuItem,
   ImageListItem,
-  Typography,
   Box,
   Avatar,
   Chip,
 } from "@mui/material";
 import Staatsform, { Staatsformtype } from "../types/staatsform";
 import Info from "../types/Info";
+import InfoReadOnlyComponent from "./info.readonly.component";
 const demokratie = require("../data/staatsform/demokratie.jpg");
 const monarchie = require("../data/staatsform/monarchie.jpg");
 const kalifat = require("../data/staatsform/kalifat.jpg");
@@ -18,6 +18,7 @@ const einsmitdernatur = require("../data/staatsform/einsmitdernatur.jpg");
 const merkantilismus = require("../data/staatsform/merkantilismus.jpg");
 const faschismus = require("../data/staatsform/faschismus.jpg");
 const kommunismus = require("../data/staatsform/kommunismus.jpg");
+const kolionalherrschaft = require("../data/staatsform/kolonialherrschaft.jpg");
 
 interface StaatsformComponentProps {
   staatsform: Staatsform;
@@ -40,7 +41,7 @@ const StaatsformComponent: React.FC<StaatsformComponentProps> = ({
 
   return (
     <div>
-      <Select value={staatsform.type} onChange={handleChange} fullWidth>
+      <Select value={staatsform.type} onChange={handleChange}>
         {staatsformen.map((form) => (
           <MenuItem key={form.type} value={form.type}>
             <Chip avatar={<Avatar src={form.img} />} label={form.title} />
@@ -54,7 +55,7 @@ const StaatsformComponent: React.FC<StaatsformComponentProps> = ({
         flexDirection="row"
         alignItems="start"
         gap={2}
-        sx={{ width: "100%" }}
+        sx={{ width: "95%" }}
       >
         <ImageListItem>
           <img
@@ -70,12 +71,11 @@ const StaatsformComponent: React.FC<StaatsformComponentProps> = ({
           flexDirection="column"
           alignItems="start"
           gap={2}
-          sx={{ width: "100%" }}
+          sx={{ width: "50%", maxWidth: "50%" }}
         >
           {st.staatsform.effects.map((info) => (
             <div key={info.name}>
-              <Typography variant="h6">{info.name}</Typography>
-              <Typography variant="body1">{info.beschreibung}</Typography>
+              <InfoReadOnlyComponent info={info}></InfoReadOnlyComponent>
             </div>
           ))}
         </Box>
@@ -195,13 +195,16 @@ const staatsformen: StaatsformObject[] = [
     ]),
   },
   {
-    img: kommunismus,
+    img: kolionalherrschaft,
     title: "Kolonialherrschaft",
     type: Staatsformtype.Kolonialherrschaft,
     staatsform: new Staatsform(Staatsformtype.Kolonialherrschaft, [
       new Info("Handelskontor", "Man hat seit Anfang 2 HHS"),
-      new Info("Kolonialpolitik",  "Für jedes neu aufgebaute Gebäude +100G; Gebäude +50K"),
-      new Info("Handelsautomatisierung", "Jede E doppelt soviel Transport")
+      new Info(
+        "Kolonialpolitik",
+        "Für jedes neu aufgebaute Gebäude +100G; Gebäude +50K"
+      ),
+      new Info("Handelsautomatisierung", "Jede E doppelt soviel Transport"),
     ]),
   },
 ];

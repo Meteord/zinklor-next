@@ -23,7 +23,14 @@ const printBewegung = (bewegung: Bewegung): string => {
 };
 
 const printTransport = (transport: Transport): string => {
-  return `${transport.einheiten}E / ${transport.rohstoffe} `;
+  let transformed = [
+    { name: `${transport.einheiten}E`, value: transport.einheiten },
+    { name: `${transport.rohstoffe}`, value: transport.rohstoffe },
+  ];
+  return transformed
+    .filter((x) => x.value !== 0)
+    .map((x) => x.name)
+    .join(", ");
 };
 
 const EinheitReadonlyComponent: React.FC<EinheitReadonlyComponentProps> = ({
@@ -55,31 +62,34 @@ const EinheitReadonlyComponent: React.FC<EinheitReadonlyComponentProps> = ({
           gap={1}
           sx={{ width: "100%" }}
         >
-          <InfoReadOnlyComponent info={einheit.info}></InfoReadOnlyComponent>
-
+          <Box
+            display="flex"
+            flexDirection="row"
+            alignItems="space-between"
+            gap={1}
+            sx={{ width: "100%" }}
+          >
+            {einheit.abkürzung && (
+              <Typography variant="h4">{einheit.abkürzung}</Typography>
+            )}
+            <InfoReadOnlyComponent info={einheit.info}></InfoReadOnlyComponent>
+          </Box>
           <div>
             {einheit.tags.map((option: string, index: number) => (
               <Chip variant="outlined" label={option} key={index} />
             ))}
           </div>
           <Grid container spacing={2}>
-            {einheit.abkürzung && (
-              <Grid item xs={12}>
-                <Typography variant="h6">
-                  Abkürzung: {einheit.abkürzung}
-                </Typography>
-              </Grid>
-            )}
             <Grid item xs={12}>
-              <Typography variant="h6">Kraft: {einheit.kraft}</Typography>
+              <Typography variant="body2">{einheit.kraft}K</Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography variant="h6">
+              <Typography variant="body2">
                 Bewegung: {printBewegung(einheit.bewegung)}
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography variant="h6">
+              <Typography variant="body2">
                 Transport: {printTransport(einheit.transport)}
               </Typography>
             </Grid>

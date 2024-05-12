@@ -1,17 +1,13 @@
 import Kosten from "../types/kosten";
 import React from "react";
-import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
-import NatureIcon from "@mui/icons-material/Nature";
-import ApartmentIcon from "@mui/icons-material/Apartment";
-import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 import {
   TableContainer,
   Paper,
   Table,
-  TableHead,
   TableRow,
   TableCell,
   TableBody,
+  Grid,
 } from "@mui/material";
 
 export interface KostenListeReadOnlyComponentProps {
@@ -22,46 +18,33 @@ export interface KostenListeReadOnlyComponentProps {
 const KostenListeReadOnlyComponent: React.FC<
   KostenListeReadOnlyComponentProps
 > = ({ kostenListe, labels }) => {
-  const calculateMultipla = (x: number) => {
-    if (x < 100) return 0;
-    else if (x < 300) return 1;
-    else return 2;
-  };
 
   return (
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell></TableCell>
-            <TableCell>Holz</TableCell>
-            <TableCell>Gold</TableCell>
-            <TableCell>Stein</TableCell>
-            <TableCell>Magie</TableCell>
-            {/* Add more table cells for other properties */}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {kostenListe.map((kosten, index) => (
-            <TableRow key={index}>
-              <TableCell>{labels[index]}</TableCell>
-              <TableCell>
-                {kosten.holz}
-              </TableCell>
-              <TableCell>
-                {kosten.gold}
-              </TableCell>
-              <TableCell>
-                {kosten.stein}
-              </TableCell>
-              <TableCell>
-                {kosten.magie}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Grid container spacing={2}>
+      {kostenListe.map((kosten, index) => (
+        <Grid item xs={12} key={index}>
+          <Paper>
+            <Grid container spacing={2}>
+              <Grid item xs={3}>
+                {labels[index]}
+              </Grid>
+              <Grid item xs={3}>
+                {kosten.gold !== 0 ? kosten.gold + "G" : ""}
+              </Grid>
+              <Grid item xs={3}>
+                {kosten.holz !== 0 ? kosten.holz + "H" : ""}
+              </Grid>
+              <Grid item xs={3}>
+                {kosten.stein !== 0 ? kosten.stein + "S" : ""}
+              </Grid>
+              <Grid item xs={3}>
+                {kosten.magie !== 0 ? kosten.magie + "M" : ""}
+              </Grid>
+            </Grid>
+          </Paper>
+        </Grid>
+      ))}
+    </Grid>
   );
 };
 

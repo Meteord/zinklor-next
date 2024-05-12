@@ -22,10 +22,10 @@ const EffektListeComponent: React.FC<EffektListeComponentProps> = ({
     gap={2}
     my={3}
     mx={3}
-    sx={{ width: "100%" }}
+    sx={{ width: "90%" }}
   >
       {effekte.map((effekt, index) => (
-        <div>
+        <Box  sx={{ width: "30%" }}>
           <EffektComponent
             effekt={effekt}
             setEffekt={(effekt: Effekt) => {
@@ -45,7 +45,7 @@ const EffektListeComponent: React.FC<EffektListeComponentProps> = ({
           >
             Entfernen
           </Button>
-        </div>
+        </Box>
       ))}
       <Button
         onClick={() => {
