@@ -10,6 +10,8 @@ import Staatsform from "./staatsform";
 
 export class GameState {
     kosten: Kosten;
+    einkommen: Kosten;
+    ausgaben: Kosten;
     runde: number;
     info: Info;
     staatsform: Staatsform;
@@ -19,8 +21,10 @@ export class GameState {
     started: boolean = false;
     erweiterung: ErweiterungType;
 
-    constructor(kosten: Kosten, runde: number, info: Info, staatsform: Staatsform, gebaude: Building[], könig: Einheit, spell: Spell,erweiterung: ErweiterungType) {
+    constructor(kosten: Kosten, einkommen: Kosten, ausgaben: Kosten, runde: number, info: Info, staatsform: Staatsform, gebaude: Building[], könig: Einheit, spell: Spell,erweiterung: ErweiterungType) {
         this.kosten = kosten;
+        this.einkommen = einkommen;
+        this.ausgaben = ausgaben;
         this.runde = runde;
         this.info = info;
         this.staatsform = staatsform;

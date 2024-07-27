@@ -1,0 +1,5 @@
+export enum GamePageState {
+  UNSTARTED = "UNSTARTED",
+  PREPARATION = "PREPARATION",
+  RUNNING = "RUNNING"
+}
