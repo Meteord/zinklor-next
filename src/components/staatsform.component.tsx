@@ -40,8 +40,13 @@ const StaatsformComponent: React.FC<StaatsformComponentProps> = ({
   };
 
   return (
-    <div>
-      <Select value={staatsform.type} onChange={handleChange}>
+   <Box my={2}
+    display="flex"
+    flexDirection="column"
+    alignItems="start"
+    sx={{ width: "100%" }}
+    gap={1}>
+      <Select value={staatsform.type} onChange={handleChange} fullWidth>
         {staatsformen.map((form) => (
           <MenuItem key={form.type} value={form.type}>
             <Chip avatar={<Avatar src={form.img} />} label={form.title} />
@@ -71,7 +76,7 @@ const StaatsformComponent: React.FC<StaatsformComponentProps> = ({
           flexDirection="column"
           alignItems="start"
           gap={2}
-          sx={{ width: "50%", maxWidth: "50%" }}
+          sx={{ width: "30%", maxWidth: "30%" }}
         >
           {st.staatsform.effects.map((info) => (
             <div key={info.name}>
@@ -80,7 +85,7 @@ const StaatsformComponent: React.FC<StaatsformComponentProps> = ({
           ))}
         </Box>
       </Box>
-    </div>
+    </Box>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import Bewegung from "../types/bewergung";
 
 export interface BewegungComponentProps {
@@ -20,7 +20,7 @@ const BewegungComponent: React.FC<BewegungComponentProps> = ({
   };
 
   return (
-    <div>
+    <Box my={2} display="flex" flexDirection="row" alignItems="start" gap={1}>
       <TextField
         label="Wege"
         value={bewegung.wege}
@@ -33,7 +33,7 @@ const BewegungComponent: React.FC<BewegungComponentProps> = ({
         onChange={handleCmChange}
         size="small"
       />
-    </div>
+    </Box>
   );
 };
 

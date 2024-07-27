@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import Info from "../types/Info";
 
 export interface InfoComponentProps {
@@ -28,22 +28,29 @@ const InfoComponent: React.FC<InfoComponentProps> = ({
   };
 
   return (
-    <div>
+    <Box my={2}
+    display="flex"
+    flexDirection="column"
+    alignItems="start"
+    sx={{ width: "100%" }}
+    gap={1}>
       <TextField
         label={labelName}
         value={info.name}
         onChange={handleTitleChange}
         size="small"
+        fullWidth
       />
       <TextField
         label={labelBeschreibung}
         value={info.beschreibung}
         onChange={handleDescriptionChange}
-        size="small"
+        size="medium"
         multiline
-        minRows={5}
+        minRows={3}
+        fullWidth
       />
-    </div>
+    </Box>
   );
 };
 

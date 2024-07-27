@@ -88,7 +88,8 @@ const GamePage: React.FC = () => {
       alignItems="center"
       gap={4}
       p={2}
-      sx={{ width: "100%" }}
+      mx={10}
+      sx={{ width: "80%" }}
     >
       <Card>
         <CardContent>
@@ -98,7 +99,6 @@ const GamePage: React.FC = () => {
               flexDirection="column"
               gap={4}
               alignItems="center"
-              sx={{ width: "90%" }}
             >
               Kontrolle über dein Leben verloren, kein existierendes Spiel
               gefunden!
@@ -123,7 +123,7 @@ const GamePage: React.FC = () => {
                   my={4}
                   display="flex"
                   flexDirection="column"
-                  alignItems="start"
+                  alignItems="center"
                   gap={1}
                   sx={{ width: "90%" }}
                 >

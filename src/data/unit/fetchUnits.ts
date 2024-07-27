@@ -16,6 +16,7 @@ let Drachen = require("./Drachen.json");
 let Heldenkrieger = require("./Heldenkrieger.json");
 let Trolle = require("./Trolle.json");
 let Riesen = require("./Riesen.json");
+let Bärenreiter = require("./Bärenreiter.json");
 export const fetchUnits = () => {
   return [
     plainToInstance(Einheit, Engel),
@@ -32,6 +33,7 @@ export const fetchUnits = () => {
     plainToInstance(Einheit, Drachen),
     plainToInstance(Einheit, Heldenkrieger),
     plainToInstance(Einheit, Trolle),
-    plainToInstance(Einheit, Riesen)
+    plainToInstance(Einheit, Riesen),
+    plainToInstance(Einheit, Bärenreiter)
   ];
 };

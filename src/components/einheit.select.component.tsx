@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Select, MenuItem, Avatar, Chip } from "@mui/material";
+import { Select, MenuItem, Avatar, Chip, Box } from "@mui/material";
 import { Einheit } from "../types/einheit";
 import EinheitReadonlyComponent from "./einheit.readonly.component";
 
@@ -24,25 +24,32 @@ const EinheitSelect: React.FC<EinheitSelectProps> = ({
   };
 
   return (
-    <div>
-      <Select value={selectedAbk} onChange={handleSelectChange}>
+    <Box
+      my={2}
+      display="flex"
+      flexDirection="column"
+      alignItems="start"
+      sx={{ width: "100%" }}
+      gap={1}
+    >
+      <Select value={selectedAbk} onChange={handleSelectChange} fullWidth>
         {einheiten.map((einheit) => (
           <MenuItem key={einheit.abkürzung} value={einheit.abkürzung}>
-            
             <Chip
-              avatar={<Avatar src={require(`../data/unit/${einheit.info.name}.jpg`)} />}
+              avatar={
+                <Avatar
+                  src={require(`../data/unit/${einheit.info.name}.jpg`)}
+                />
+              }
               label={einheit.info.name}
             />
           </MenuItem>
         ))}
       </Select>
       {einheit && (
-        <EinheitReadonlyComponent
-          einheit={einheit}
-          useDefaultImage={false}
-        />
+        <EinheitReadonlyComponent einheit={einheit} useDefaultImage={false} />
       )}
-    </div>
+    </Box>
   );
 };
 

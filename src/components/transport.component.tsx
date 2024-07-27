@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import Transport from "../types/transport";
 
 export interface TransportComponentProps {
@@ -28,7 +28,7 @@ const TransportComponent: React.FC<TransportComponentProps> = ({
   };
 
   return (
-    <div>
+    <Box my={2} display="flex" flexDirection="row" alignItems="start" gap={1}>
       <TextField
         label="Rohstoffe"
         value={transport.rohstoffe}
@@ -41,7 +41,7 @@ const TransportComponent: React.FC<TransportComponentProps> = ({
         onChange={handleEinheitenChange}
         size="small"
       />
-    </div>
+    </Box>
   );
 };
 

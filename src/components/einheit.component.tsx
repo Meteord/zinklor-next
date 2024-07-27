@@ -85,6 +85,7 @@ const EinheitComponent: React.FC<EinheitComponentProps> = ({
           flexDirection="column"
           alignItems="space-between"
           gap={1}
+          mx={1}
           sx={{ width: "50%" }}
         >
           <InfoComponent
