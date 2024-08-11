@@ -18,16 +18,14 @@ export interface AddunitDialogComponentProps {
   open: boolean;
   setOpen(open: boolean): void;
   kosten: Kosten;
-  addUnits: (einheiten: Einheit[]) => void;
-  setKosten: (kosten: Kosten) => void;
+  setKostenAndUnits: (kosten: Kosten, einheiten: Einheit[]) => void;
 }
 
 const AddunitDialogComponent: React.FC<AddunitDialogComponentProps> = ({
   open,
   setOpen,
   kosten,
-  addUnits,
-  setKosten,
+  setKostenAndUnits,
 }: AddunitDialogComponentProps) => {
   const [einheiten, setEinheiten] = useState<Einheit[]>([]);
 
@@ -86,8 +84,7 @@ const AddunitDialogComponent: React.FC<AddunitDialogComponentProps> = ({
   };
 
   const handleSubmit = () => {
-    setKosten(diffKosten);
-    addUnits(gekaufteEinheiten);
+    setKostenAndUnits(diffKosten, gekaufteEinheiten);
     gekaufteEinheiten.splice(0, gekaufteEinheiten.length);
     setOpen(false);
   };
@@ -104,11 +101,11 @@ const AddunitDialogComponent: React.FC<AddunitDialogComponentProps> = ({
   };
   const handleAddUnit = (abk: String) => {
     const einheit = einheiten.find((e) => e.abkürzung === abk);
+    const copy = { ...einheit, number: Math.floor(Math.random() * 200) + 1 };
     if (einheit) {
-      setGekaufteEinheiten([...gekaufteEinheiten, einheit]);
+      setGekaufteEinheiten([...gekaufteEinheiten, copy]);
     }
-
-  }
+  };
 
   return (
     <Box
@@ -133,8 +130,14 @@ const AddunitDialogComponent: React.FC<AddunitDialogComponentProps> = ({
             <EinheitTable
               einheiten={filteredEinheiten}
               selectable
-              onSelect={(einheiten) => {
-                setGekaufteEinheiten([...gekaufteEinheiten, einheiten]);
+              onSelect={(einheit) => {
+                const copy = {
+                  ...einheit,
+                  number: Math.floor(Math.random() * 200) + 1,
+                };
+                if (einheit) {
+                  setGekaufteEinheiten([...gekaufteEinheiten, copy]);
+                }
               }}
             ></EinheitTable>
           </div>
@@ -150,8 +153,18 @@ const AddunitDialogComponent: React.FC<AddunitDialogComponentProps> = ({
                       kostenListe={[kosten.multiply(anzahl)]}
                       children={
                         <div>
-                          <Button variant="outlined" onClick={() => handleSubtractUnit(abkürzung)}>-1</Button>
-                          <Button variant="outlined" onClick={() => handleAddUnit(abkürzung)}>+1</Button>
+                          <Button
+                            variant="outlined"
+                            onClick={() => handleSubtractUnit(abkürzung)}
+                          >
+                            -1
+                          </Button>
+                          <Button
+                            variant="outlined"
+                            onClick={() => handleAddUnit(abkürzung)}
+                          >
+                            +1
+                          </Button>
                         </div>
                       }
                     ></KostenListeReadOnlyComponent>
@@ -169,8 +182,17 @@ const AddunitDialogComponent: React.FC<AddunitDialogComponentProps> = ({
           </div>
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" onClick={handleClose}>Abbrechen</Button>
-          <Button variant="contained" color="primary" onClick={handleSubmit} disabled={diffKosten.isNegative()}>Einheiten einkaufen</Button>
+          <Button variant="outlined" onClick={handleClose}>
+            Abbrechen
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleSubmit}
+            disabled={diffKosten.isNegative()}
+          >
+            Einheiten einkaufen
+          </Button>
         </DialogActions>
       </Dialog>
     </Box>
