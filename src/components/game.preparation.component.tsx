@@ -142,10 +142,10 @@ const GamePreperationComponent: React.FC<GamePreperationComponentProps> = ({
         </Box>
       )}
       <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-        <Button color="inherit" onClick={handleBack} sx={{ mr: 1 }}>
+        <Button variant="outlined" color="primary" onClick={handleBack} sx={{ mr: 1 }}>
           Zurück Diggi
         </Button>
-        <Button onClick={handleNext}>
+        <Button variant="contained" color="primary" onClick={handleNext}>
           {activeStep === steps.length - 1 ? "Fettig" : "Bruder muss los"}
         </Button>
       </Box>{" "}

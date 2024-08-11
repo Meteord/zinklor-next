@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import React from "react";
 import type { RouteObject } from "react-router-dom";
 import { useRoutes } from "react-router-dom";

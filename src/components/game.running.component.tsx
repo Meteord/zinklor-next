@@ -1,9 +1,12 @@
 import { Box, ImageListItem, ButtonGroup, Button } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import KostenListeReadOnlyComponent from "./costenliste.readonly.component";
 import InfoReadOnlyComponent from "./info.readonly.component";
 import { GameState } from "../types/gamestate";
 import AddIcon from "@mui/icons-material/Add";
+import AddunitDialogComponent from "./addunit.dialog.component";
+import { Einheit } from "../types/einheit";
+import Kosten from "../types/kosten";
 
 interface GameRunningComponentProps {
   state: GameState;
@@ -15,12 +18,15 @@ const GameRunningComponent: React.FC<GameRunningComponentProps> = ({
   setState,
 }: GameRunningComponentProps) => {
   const diffKosten = state.einkommen.diff(state.ausgaben);
+
+  const [addUnitOpen, setAddUnitOpen] = useState(false);
+  const [addBuildingOpen, setAddBuildingOpen] = useState(false);
   function handleAddUnit(event: any): void {
-    throw new Error("Function not implemented.");
+    setAddUnitOpen(true);
   }
 
   function handleAddBuilding(event: any): void {
-    throw new Error("Function not implemented.");
+    setAddBuildingOpen(true);
   }
   return (
     <Box
@@ -90,6 +96,18 @@ const GameRunningComponent: React.FC<GameRunningComponentProps> = ({
         </Button>
         <Button startIcon={<AddIcon />}>Zauber wirken</Button>
       </ButtonGroup>
+
+      <AddunitDialogComponent
+        open={addUnitOpen}
+        setOpen={setAddUnitOpen}
+        kosten={state.kosten}
+        addUnits={function (einheiten: Einheit[]): void {
+          console.log(einheiten);
+        }}
+        setKosten={(kosten: Kosten): void => {
+          setState({ ...state, kosten: kosten });
+        }}
+      ></AddunitDialogComponent>
     </Box>
   );
 };

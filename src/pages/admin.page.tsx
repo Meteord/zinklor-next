@@ -114,6 +114,8 @@ const AdminPage: React.FC = () => {
                 ></BuildingComponent>
               )}
               <Button
+                variant="outlined"
+                color="primary"
                 onClick={() => {
                   isBuildingPreview(!buildingPreview);
                 }}
@@ -122,6 +124,8 @@ const AdminPage: React.FC = () => {
               </Button>
               {buildingPreview ? (
                 <Button
+                  variant="contained"
+                  color="primary"
                   onClick={() => {
                     exportData();
                   }}
@@ -147,6 +151,8 @@ const AdminPage: React.FC = () => {
                 ></EinheitReadonlyComponent>
               )}
               <Button
+                variant="outlined"
+                color="primary"
                 onClick={() => {
                   isUnitPreview(!unitPreview);
                 }}
@@ -155,6 +161,8 @@ const AdminPage: React.FC = () => {
               </Button>
               {unitPreview ? (
                 <Button
+                  variant="contained"
+                  color="primary"
                   onClick={() => {
                     exportData();
                   }}

@@ -4,8 +4,10 @@ import Effekt from "./effekt";
 import Kosten from "./kosten";
 import Transport from "./transport";
 import { UnitTags } from "./tags";
+import { Type } from "class-transformer";
 
 export class Einheit {
+    @Type(() => Kosten)
     kosten: Kosten;
     abkürzung: string;
     bewegung: Bewegung;

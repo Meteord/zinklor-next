@@ -49,7 +49,11 @@ const GamePage: React.FC = () => {
             >
               Kontrolle über dein Leben verloren, kein existierendes Spiel
               gefunden!
-              <Button onClick={() => setStarted(GamePageState.PREPARATION)}>
+              <Button
+                onClick={() => setStarted(GamePageState.PREPARATION)}
+                variant="contained"
+                color="primary"
+              >
                 <Typography variant="h5" component="h1" gutterBottom>
                   Neues Spiel erstellen
                 </Typography>

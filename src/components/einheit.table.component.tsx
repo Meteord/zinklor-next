@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import AddIcon from "@mui/icons-material/Add";
 import EinheitReadonlyComponent from "./einheit.readonly.component";
 import Kosten from "../types/kosten";
 import Bewegung from "../types/bewergung";
@@ -19,6 +20,8 @@ import Effekt from "../types/effekt";
 
 export interface Rowprop {
   einheit: Einheit;
+  onSelect?: (einheit: Einheit) => void;
+  selectable: boolean;
 }
 
 const printKosten = (kosten: Kosten): string => {
@@ -44,13 +47,17 @@ const printTransport = (transport: Transport): string => {
 const printEffekte = (effekte: Effekt[]): string => {
   return effekte.map((effekt) => effekt.info.name).join(", ");
 };
-const EinheitenCard: React.FC<Rowprop> = ({ einheit }: Rowprop) => {
+const EinheitenCard: React.FC<Rowprop> = ({
+  einheit,
+  onSelect,
+  selectable,
+}: Rowprop) => {
   const [open, setOpen] = React.useState(false);
 
   return (
     <React.Fragment>
       <Card>
-        <CardContent>
+        <CardActions>
           <IconButton
             aria-label="expand row"
             size="small"
@@ -58,7 +65,17 @@ const EinheitenCard: React.FC<Rowprop> = ({ einheit }: Rowprop) => {
           >
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
-
+          {selectable && (
+            <IconButton
+              aria-label="select unit"
+              size="small"
+              onClick={() => onSelect(einheit)}
+            >
+              {<AddIcon />}
+            </IconButton>
+          )}
+        </CardActions>
+        <CardContent>
           <Typography variant="h6" component="div">
             {einheit.info.name}
           </Typography>
@@ -86,15 +103,24 @@ const EinheitenCard: React.FC<Rowprop> = ({ einheit }: Rowprop) => {
 };
 export interface EinheitTableProps {
   einheiten: Einheit[];
+  selectable?: boolean;
+  onSelect?: (einheit: Einheit) => void;
 }
 const EinheitTable: React.FC<EinheitTableProps> = ({
   einheiten,
+  onSelect,
+  selectable,
 }: EinheitTableProps) => {
   return (
     <Grid container spacing={2}>
       {einheiten.map((einheit) => (
         <Grid item xs={12} sm={6} md={4} key={einheit.info.name}>
-          <EinheitenCard einheit={einheit} key={einheit.info.name}/>
+          <EinheitenCard
+            einheit={einheit}
+            key={einheit.info.name}
+            selectable={selectable ? selectable : false}
+            onSelect={onSelect}
+          />
         </Grid>
       ))}
     </Grid>
