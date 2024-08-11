@@ -1,5 +1,12 @@
-import React, {useState } from "react";
-import { Typography, Box, Button, CardContent, Card } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Typography,
+  Box,
+  Button,
+  CardContent,
+  Card,
+  CardActionArea,
+} from "@mui/material";
 import { GameState } from "../types/gamestate";
 import Kosten from "../types/kosten";
 import Info from "../types/Info";
@@ -7,26 +14,37 @@ import Staatsform, { Staatsformtype } from "../types/staatsform";
 import GameRunningComponent from "../components/game.running.component";
 import { GamePageState } from "../types/GamePageState";
 import GamePreperationComponent from "../components/game.preparation.component";
+import { plainToInstance } from "class-transformer";
+
+const getStartState = (): GameState => {
+  return new GameState(
+    GamePageState.UNSTARTED,
+    new Kosten(0, 500, 0, 0),
+    new Kosten(0, 0, 0, 0),
+    new Kosten(0, 0, 0, 0),
+    0,
+    new Info("", ""),
+    new Staatsform(Staatsformtype.Demokratie, []),
+    [],
+    null,
+    null,
+    null
+  );
+};
 
 const GamePage: React.FC = () => {
-  const [started, setStarted] = useState<GamePageState>(
-    GamePageState.UNSTARTED
-  );
-  const [state, setState] = useState<GameState>(
-    new GameState(
-      new Kosten(0, 500, 0, 0),
-      new Kosten(0, 0, 0, 0),
-      new Kosten(0, 0, 0, 0),
-      0,
-      new Info("", ""),
-      new Staatsform(Staatsformtype.Demokratie, []),
-      [],
-      null,
-      null,
-      null
-    )
-  );
-
+  const [state, setState] = useState<GameState>(() => {
+    const savedState = localStorage.getItem("gameState");
+    if (savedState) {
+      let instance = plainToInstance(GameState, JSON.parse(savedState));
+      return instance;
+    } else {
+      return getStartState();
+    }
+  });
+  React.useEffect(() => {
+    localStorage.setItem("gameState", JSON.stringify(state));
+  }, [state]);
   return (
     <Box
       my={4}
@@ -40,7 +58,7 @@ const GamePage: React.FC = () => {
     >
       <Card>
         <CardContent>
-          {started === GamePageState.UNSTARTED ? (
+          {state.state === GamePageState.UNSTARTED ? (
             <Box
               display="flex"
               flexDirection="column"
@@ -50,7 +68,12 @@ const GamePage: React.FC = () => {
               Kontrolle über dein Leben verloren, kein existierendes Spiel
               gefunden!
               <Button
-                onClick={() => setStarted(GamePageState.PREPARATION)}
+                onClick={() =>
+                  setState({
+                    ...state,
+                    ...{ state: GamePageState.PREPARATION },
+                  })
+                }
                 variant="contained"
                 color="primary"
               >
@@ -59,19 +82,33 @@ const GamePage: React.FC = () => {
                 </Typography>
               </Button>
             </Box>
-          ) : started === GamePageState.PREPARATION ? (
+          ) : state.state === GamePageState.PREPARATION ? (
             <GamePreperationComponent
               state={state}
               setState={setState}
-              setStarted={setStarted}
             ></GamePreperationComponent>
           ) : (
-            <GameRunningComponent
-              state={state}
-              setState={setState}
-            ></GameRunningComponent>
+            <>
+              <GameRunningComponent
+                state={state}
+                setState={setState}
+              ></GameRunningComponent>
+            </>
           )}
         </CardContent>
+        {state.state !== GamePageState.UNSTARTED && (
+          <CardActionArea>
+            <Button
+              onClick={() => setState(getStartState())}
+              variant="contained"
+              color="secondary"
+            >
+              <Typography variant="h5" component="h1" gutterBottom>
+                Spiel verlassen
+              </Typography>
+            </Button>
+          </CardActionArea>
+        )}
       </Card>
     </Box>
   );

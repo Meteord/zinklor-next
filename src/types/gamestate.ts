@@ -1,4 +1,6 @@
 
+import { Type } from "class-transformer";
+import { GamePageState } from "./GamePageState";
 import Info from "./Info";
 import Building from "./building";
 import { Einheit } from "./einheit";
@@ -9,11 +11,16 @@ import Staatsform from "./staatsform";
 
 
 export class GameState {
+    state: GamePageState;
+    @Type(() => Kosten)
     kosten: Kosten;
+    @Type(() => Kosten)
     einkommen: Kosten;
+    @Type(() => Kosten)
     ausgaben: Kosten;
     runde: number;
     info: Info;
+    @Type(() => Staatsform)
     staatsform: Staatsform;
     spell: Spell;
     gebaude: Building[];
@@ -21,7 +28,8 @@ export class GameState {
     started: boolean = false;
     erweiterung: ErweiterungType;
 
-    constructor(kosten: Kosten, einkommen: Kosten, ausgaben: Kosten, runde: number, info: Info, staatsform: Staatsform, gebaude: Building[], könig: Einheit, spell: Spell,erweiterung: ErweiterungType) {
+    constructor(state: GamePageState, kosten: Kosten, einkommen: Kosten, ausgaben: Kosten, runde: number, info: Info, staatsform: Staatsform, gebaude: Building[], könig: Einheit, spell: Spell,erweiterung: ErweiterungType) {
+        this.state = state;
         this.kosten = kosten;
         this.einkommen = einkommen;
         this.ausgaben = ausgaben;

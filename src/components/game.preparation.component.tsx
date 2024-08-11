@@ -21,13 +21,11 @@ import { fetchUnits } from "../data/unit/fetchUnits";
 interface GamePreperationComponentProps {
   state: GameState;
   setState: (gamestate: GameState) => void;
-  setStarted: (gamepagestate: GamePageState) => void;
 }
 
 const GamePreperationComponent: React.FC<GamePreperationComponentProps> = ({
   state,
   setState,
-  setStarted,
 }: GamePreperationComponentProps) => {
   const [activeStep, setActiveStep] = useState(0);
 
@@ -54,13 +52,14 @@ const GamePreperationComponent: React.FC<GamePreperationComponentProps> = ({
   const handleNext = () => {
     if (activeStep === steps.length - 1) {
       console.log("Submit: GameState" + JSON.stringify(state));
-      setStarted(GamePageState.RUNNING);
+      
+      setState({ ...state, ...{ state: GamePageState.RUNNING } });
     } else setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleBack = () => {
     if (activeStep === 0) {
-      setStarted(GamePageState.UNSTARTED);
+      setState({ ...state, ...{ state: GamePageState.UNSTARTED } });
     } else setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
