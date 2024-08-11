@@ -1,10 +1,13 @@
 import {
   Box,
   Button,
+  Checkbox,
   Divider,
+  FormControlLabel,
   Step,
   StepLabel,
   Stepper,
+  TextField,
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
@@ -52,7 +55,7 @@ const GamePreperationComponent: React.FC<GamePreperationComponentProps> = ({
   const handleNext = () => {
     if (activeStep === steps.length - 1) {
       console.log("Submit: GameState" + JSON.stringify(state));
-      
+
       setState({ ...state, ...{ state: GamePageState.RUNNING } });
     } else setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -91,14 +94,14 @@ const GamePreperationComponent: React.FC<GamePreperationComponentProps> = ({
             labelName="Wie heißt du?"
             setInfo={(info) => setState({ ...state, ...{ info: info } })}
           ></InfoComponent>
-          { kings.length > 0 && (
-          <EinheitSelectComponent
-            einheiten={kings}
-            einheit={state.könig}
-            setEinheit={(koenig) =>
-              setState({ ...state, ...{ könig: koenig } })
-            }
-          ></EinheitSelectComponent>
+          {kings.length > 0 && (
+            <EinheitSelectComponent
+              einheiten={kings}
+              einheit={state.könig}
+              setEinheit={(koenig) =>
+                setState({ ...state, ...{ könig: koenig } })
+              }
+            ></EinheitSelectComponent>
           )}
           <Divider></Divider>
 
@@ -132,16 +135,97 @@ const GamePreperationComponent: React.FC<GamePreperationComponentProps> = ({
           gap={2}
           sx={{ width: "90%" }}
         >
-          <div>Ziehen alle n Runden</div>
-          <div>Hacken für n Runden erlaubt</div>
-          <div>Spielen mit le Fläggle</div>
-          <div>Erlaubte Erweiterungen</div>
-          <div>Umweltfreundlich/Feindlich nach</div>
-          <div>Lehmgolems erlaubt?</div>
+          <TextField
+            fullWidth
+            type="number"
+            label="Ziehen alle n Runden"
+            inputProps={{ min: 1, step: 1 }}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            defaultValue={5}
+            onChange={(event) => {
+              const value = parseInt(event.target.value);
+              if (value > 1) {
+                // handle valid input
+              } else {
+                // handle invalid input
+              }
+            }}
+          />
+          <TextField
+            fullWidth
+            type="number"
+            label="Hacken für n Runden erlaubt"
+            inputProps={{ min: 0, step: 1 }}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            defaultValue={2}
+            onChange={(event) => {
+              const value = parseInt(event.target.value);
+              if (value > 1) {
+                // handle valid input
+              } else {
+                // handle invalid input
+              }
+            }}
+          />
+          <TextField
+            type="number"
+            label="Umweltfeindlich/Umweltfreundlich nach n Runden"
+            inputProps={{ min: 0, step: 1 }}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            defaultValue={30}
+            fullWidth
+            onChange={(event) => {
+              const value = parseInt(event.target.value);
+              if (value > 1) {
+                // handle valid input
+              } else {
+                // handle invalid input
+              }
+            }}
+          />
+          <TextField
+            fullWidth
+            type="number"
+            label="Rundenlimit in Minuten (-1 heißt unlimitiert)"
+            inputProps={{ min: -1, step: 1 }}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            defaultValue={-1}
+            onChange={(event) => {
+              const value = parseInt(event.target.value);
+              if (value > 1) {
+                // handle valid input
+              } else {
+                // handle invalid input
+              }
+            }}
+          />
+          <FormControlLabel
+            control={<Checkbox defaultChecked />}
+            label="Le Fläggle"
+            defaultChecked
+          />
+
+          <FormControlLabel
+            control={<Checkbox defaultChecked />}
+            label="Lehmgolems erlaubt? (Nur für Profis)"
+          />
         </Box>
       )}
       <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-        <Button variant="outlined" color="primary" onClick={handleBack} sx={{ mr: 1 }}>
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={handleBack}
+          sx={{ mr: 1 }}
+        >
           Zurück Diggi
         </Button>
         <Button variant="contained" color="primary" onClick={handleNext}>
@@ -153,5 +237,3 @@ const GamePreperationComponent: React.FC<GamePreperationComponentProps> = ({
 };
 
 export default GamePreperationComponent;
-
-
