@@ -1,0 +1,12 @@
+[project]
+name = "zinklor-next"
+version = "0.1.0"
+description = "Add your description here"
+maintainers = [
+  {name = "Michael Jaumann", email = ""}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[standard]>=0.115.6",
+]

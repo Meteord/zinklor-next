@@ -16,8 +16,9 @@ export class Einheit {
     effekte: Effekt[];
     info: Info;
     transport: Transport
+    number = 0;
 
-    constructor(kosten: Kosten, info: Info, abkürzung: string, bewegung: Bewegung, kraft: number, tags: UnitTags[], effekte: Effekt[], transport: Transport) {
+    constructor(kosten: Kosten, info: Info, abkürzung: string, bewegung: Bewegung, kraft: number, tags: UnitTags[], effekte: Effekt[], transport: Transport, number = 0) {
         this.kosten = kosten;
         this.abkürzung = abkürzung;
         this.bewegung = bewegung;
@@ -26,5 +27,6 @@ export class Einheit {
         this.effekte = effekte;
         this.info = info;
         this.transport = transport;
+        this.number = number;
     }
 }

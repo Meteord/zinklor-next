@@ -25,8 +25,8 @@ export class GameState {
     spell: Spell;
     gebaude: Building[];
     könig: Einheit;
-    started: boolean = false;
     erweiterung: ErweiterungType;
+    einheiten: Einheit[] = [];
 
     constructor(state: GamePageState, kosten: Kosten, einkommen: Kosten, ausgaben: Kosten, runde: number, info: Info, staatsform: Staatsform, gebaude: Building[], könig: Einheit, spell: Spell,erweiterung: ErweiterungType) {
         this.state = state;

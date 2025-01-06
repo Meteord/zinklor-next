@@ -17,6 +17,8 @@ let Heldenkrieger = require("./Heldenkrieger.json");
 let Trolle = require("./Trolle.json");
 let Riesen = require("./Riesen.json");
 let Bärenreiter = require("./Bärenreiter.json");
+let Wolkenfestung = require("./Wolkenfestung.json");
+let Kriegsschiff = require("./Kriegsschiff.json");
 export const fetchUnits = () => {
   return [
     plainToInstance(Einheit, Engel),
@@ -34,6 +36,8 @@ export const fetchUnits = () => {
     plainToInstance(Einheit, Heldenkrieger),
     plainToInstance(Einheit, Trolle),
     plainToInstance(Einheit, Riesen),
-    plainToInstance(Einheit, Bärenreiter)
+    plainToInstance(Einheit, Bärenreiter),
+    plainToInstance(Einheit, Wolkenfestung),
+    plainToInstance(Einheit, Kriegsschiff),
   ];
 };

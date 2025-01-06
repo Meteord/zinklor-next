@@ -3,8 +3,8 @@ import {
   Typography,
   Divider,
   Box,
-  ImageListItem,
   TextField,
+  ImageListItem,
 } from "@mui/material";
 import Kosten from "../types/kosten";
 import KostenComponent from "./costen.component";
@@ -119,14 +119,16 @@ const EinheitComponent: React.FC<EinheitComponentProps> = ({
           />
         </Box>
         <Box sx={{ width: "45%" }}>
-          <ImageListItem>
+          <ImageListItem sx={{objectFit: "contain"}}>
             <img
-              srcSet={`${einheit_jpg}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-              src={`${einheit_jpg}?w=164&h=164&fit=crop&auto=format`}
+              srcSet={`${einheit_jpg}`}
+              src={`${einheit_jpg}`}
               alt="default_building"
               loading="lazy"
+              width={164}
+              height={164}
             />
-          </ImageListItem>
+            </ImageListItem>
         </Box>
       </Box>
       <Divider></Divider>
